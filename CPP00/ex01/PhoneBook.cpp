@@ -11,3 +11,37 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+void    PhoneBook::AddContact()
+{
+	std::string First;
+	std::string Last;
+	std::string Nick;
+	std::string Num;
+	std::string Secret;
+
+	while (First == ""){
+		std::cout << "First Name:";
+		std::getline(std::cin, First);
+	}
+	while (Last == "")
+	{
+		std::cout << "Last Name:";
+		std::getline(std::cin, Last);
+	}
+	while (Nick == "")
+	{
+		std::cout << "Nickname:";
+		std::getline(std::cin, Nick);
+	}
+	while (Num == "")
+	{
+		std::cout << "Phone Number:";
+		std::getline(std::cin, Num);
+	}
+	while (Secret == "")
+	{
+		std::cout << "Darkest Secret:";
+		std::getline(std::cin, Secret);
+	}
+}

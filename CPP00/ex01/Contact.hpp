@@ -13,7 +13,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include "header.hpp"
+#include <iostream>
 
 class Contact
 {
@@ -26,16 +26,6 @@ private:
 public:
 	void	SetContact(std::string First, std::string Last, std::string Nick, std::string Number, std::string Sec);
 	void	GetContact();
-	// Contact(/* args */);
-	// ~Contact();
 };
 
 #endif
-// Contact::Contact(/* args */)
-// {
-// }
-
-// Contact::~Contact()
-// {
-// }
-

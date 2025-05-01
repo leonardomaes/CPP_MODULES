@@ -29,3 +29,5 @@ void	Contact::GetContact()
 	std::cout << PhoneNumber << std::endl;
 	std::cout << Secret << std::endl;
 }
+
+

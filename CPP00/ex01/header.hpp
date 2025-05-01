@@ -18,7 +18,9 @@
 #include <string>
 #include <cmath>
 #include <limits>
+#include <cstring>
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
+// #include "Contact.hpp"
+
 
 #endif

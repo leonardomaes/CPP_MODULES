@@ -16,7 +16,7 @@ CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Sources
-SRC =	main.cpp Contact.cpp
+SRC =	main.cpp Contact.cpp PhoneBook.cpp
 
 # Commands
 RM = rm -rf
