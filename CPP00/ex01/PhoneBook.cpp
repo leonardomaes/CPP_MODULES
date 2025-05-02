@@ -12,7 +12,7 @@
 
 #include "PhoneBook.hpp"
 
-void    PhoneBook::AddContact()
+void    PhoneBook::AddContact(int id)
 {
 	std::string First;
 	std::string Last;
@@ -20,28 +20,40 @@ void    PhoneBook::AddContact()
 	std::string Num;
 	std::string Secret;
 
-	while (First == ""){
+	while (First.empty()){
 		std::cout << "First Name:";
 		std::getline(std::cin, First);
 	}
-	while (Last == "")
+	while (Last.empty())
 	{
 		std::cout << "Last Name:";
 		std::getline(std::cin, Last);
 	}
-	while (Nick == "")
+	while (Nick.empty())
 	{
 		std::cout << "Nickname:";
 		std::getline(std::cin, Nick);
 	}
-	while (Num == "")
+	while (Num.empty())
 	{
 		std::cout << "Phone Number:";
 		std::getline(std::cin, Num);
 	}
-	while (Secret == "")
+	while (Secret.empty())
 	{
 		std::cout << "Darkest Secret:";
 		std::getline(std::cin, Secret);
+	}
+	c[id].SetContact(First, Last, Nick, Num, Secret);
+}
+
+void	PhoneBook::SearchContact()
+{
+	int i = 0;
+	std::cout << "*----------CONTACTS-----------*" << std::endl;
+	while (c[i].ExistId())
+	{
+		c[i].GetContact(i);
+		i++;
 	}
 }

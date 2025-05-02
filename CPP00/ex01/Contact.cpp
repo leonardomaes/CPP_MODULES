@@ -19,15 +19,21 @@ void	Contact::SetContact(std::string First, std::string Last, std::string Nick, 
 	Nickname = Nick;
 	PhoneNumber = Number;
 	Secret = Sec;
+	Init = true;
 }
 
-void	Contact::GetContact()
+void	Contact::GetContact(int id)
 {
-	std::cout << FirstName << std::endl;
-	std::cout << LastName << std::endl;
+	std::cout << id << "|";
+	std::cout << FirstName <<  "|";
+	std::cout << LastName <<  "|";
 	std::cout << Nickname << std::endl;
 	std::cout << PhoneNumber << std::endl;
 	std::cout << Secret << std::endl;
+}
+
+int		Contact::ExistId(){
+	return (Init);
 }
 
 

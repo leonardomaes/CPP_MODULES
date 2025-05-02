@@ -23,9 +23,11 @@ private:
 	std::string Nickname;
 	std::string PhoneNumber;
 	std::string Secret;
+	bool		Init;
 public:
 	void	SetContact(std::string First, std::string Last, std::string Nick, std::string Number, std::string Sec);
-	void	GetContact();
+	void	GetContact(int id);
+	int		ExistId();
 };
 
 #endif

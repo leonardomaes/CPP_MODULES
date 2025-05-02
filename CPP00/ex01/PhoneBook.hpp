@@ -22,7 +22,8 @@ class PhoneBook
 private:
 	Contact c[MAX_SIZE];
 public:
-	void	AddContact();
+	void	AddContact(int id);
+	void	SearchContact();
 };
 
 #endif

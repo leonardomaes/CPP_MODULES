@@ -16,11 +16,13 @@ int main(int ac, char *av[])
 {
 	std::string	comm;
 	PhoneBook Phone;
+	int	id = 0;
 	(void)ac;
 	(void)av;
 	while (1)
 	{
 		std::cout << "*-----------------------------*" << std::endl;
+		std::cout << "Type your command..." << std::endl;
 		std::getline(std::cin, comm);
 		for (int i = 0; comm[i]; i++)
 			comm[i] = tolower(comm[i]);
@@ -28,12 +30,21 @@ int main(int ac, char *av[])
 			break;
 		else if (comm == "add")
 		{
-			Phone.AddContact();
+			if (id == 7)
+				id = 0;
+			Phone.AddContact(id);
+			id++;
+			std::cout << id << std::endl;
+		}
+		else if (comm == "search")
+		{
+			Phone.SearchContact();
 		}
 		
+		
 	}
-	Contact c;
-	c.SetContact("Leonardo", "Maes", "Leo", "934 998 052", "test");
-	c.GetContact();
+	//Contact c;
+	//c.SetContact("Leonardo", "Maes", "Leo", "934 998 052", "test");
+	//c.GetContact();
 	return 0;
 }
