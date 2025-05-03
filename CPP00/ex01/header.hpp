@@ -13,12 +13,6 @@
 #ifndef HEADER_HPP
 # define HEADER_HPP
 
-#include <cctype>
-#include <iostream>
-#include <string>
-#include <cmath>
-#include <limits>
-#include <cstring>
 #include "PhoneBook.hpp"
 // #include "Contact.hpp"
 

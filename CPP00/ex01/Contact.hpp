@@ -14,6 +14,12 @@
 # define CONTACT_HPP
 
 #include <iostream>
+#include <cctype>
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <limits>
+#include <cstring>
 
 class Contact
 {
@@ -28,6 +34,7 @@ public:
 	void	SetContact(std::string First, std::string Last, std::string Nick, std::string Number, std::string Sec);
 	void	GetContact(int id);
 	int		ExistId();
+	void	StartContact();
 };
 
 #endif

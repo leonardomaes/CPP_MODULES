@@ -14,16 +14,19 @@
 # define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include <iostream>
 # define MAX_SIZE 8
+# define MAX_LEN 10
 
 class PhoneBook
 {
 private:
 	Contact c[MAX_SIZE];
+	int		id;
 public:
-	void	AddContact(int id);
+	void	AddContact();
 	void	SearchContact();
+	void	StartContacts();
+	int		IsNumber(std::string num);
 };
 
 #endif

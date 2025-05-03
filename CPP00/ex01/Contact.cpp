@@ -24,16 +24,24 @@ void	Contact::SetContact(std::string First, std::string Last, std::string Nick, 
 
 void	Contact::GetContact(int id)
 {
-	std::cout << id << "|";
-	std::cout << FirstName <<  "|";
-	std::cout << LastName <<  "|";
+	std::cout << id+1 << " | ";
+	std::cout << FirstName <<  " | ";
+	std::cout << LastName <<  " | ";
 	std::cout << Nickname << std::endl;
-	std::cout << PhoneNumber << std::endl;
-	std::cout << Secret << std::endl;
+	// std::cout << PhoneNumber << std::endl;
+	// std::cout << Secret << std::endl;
 }
 
 int		Contact::ExistId(){
 	return (Init);
 }
 
-
+void	Contact::StartContact()
+{
+	FirstName = "";
+	LastName = "";
+	Nickname = "";
+	PhoneNumber = "";
+	Secret = "";
+	Init = false;
+}
