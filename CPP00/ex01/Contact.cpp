@@ -22,18 +22,12 @@ void	Contact::SetContact(std::string First, std::string Last, std::string Nick, 
 	Init = true;
 }
 
-void	Contact::GetContact(int id)
+int	StrLen(std::string str)
 {
-	std::cout << id+1 << " | ";
-	std::cout << FirstName <<  " | ";
-	std::cout << LastName <<  " | ";
-	std::cout << Nickname << std::endl;
-	// std::cout << PhoneNumber << std::endl;
-	// std::cout << Secret << std::endl;
-}
-
-int		Contact::ExistId(){
-	return (Init);
+	int	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 void	Contact::StartContact()
@@ -44,4 +38,40 @@ void	Contact::StartContact()
 	PhoneNumber = "";
 	Secret = "";
 	Init = false;
+}
+
+void	Contact::TruncateSize(std::string &str)
+{
+	if (StrLen(str) > MAX_LEN)
+	{
+		str.resize(MAX_LEN - 1);
+		str += ".";
+	}
+}
+
+int		Contact::ExistId(){
+	return (Init);
+}
+
+void	Contact::GetContact(int id)
+{
+	std::string	First = FirstName;
+	std::string	Last = LastName;
+	std::string	Nick = Nickname;
+	TruncateSize(First);
+	TruncateSize(Last);
+	TruncateSize(Nick);
+	std::cout << std::right << "|" << std::setw(10) << id+1
+			<< "|" << std::setw(10) << First
+			<< "|" << std::setw(10) << Last
+			<< "|" << std::setw(10) << Nick << "|" << std::endl;
+}
+
+void	Contact::ShowIdContact()
+{
+	std::cout << std::left << std::setw(12) << "First Name:" << FirstName << std::endl
+			<< std::setw(12) << "Last Name:" << LastName << std::endl
+			<< std::setw(12) << "Nickname:" << Nickname << std::endl
+			<< std::setw(12) << "Number:" << PhoneNumber << std::endl
+			<< std::setw(12) << "Secret:" << Secret << std::endl;
 }

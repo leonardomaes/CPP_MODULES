@@ -16,10 +16,14 @@
 #include <iostream>
 #include <cctype>
 #include <iostream>
+#include <iomanip>
 #include <string>
+#include <unistd.h>
 #include <cmath>
 #include <limits>
 #include <cstring>
+# define MAX_SIZE 8
+# define MAX_LEN 10
 
 class Contact
 {
@@ -35,6 +39,8 @@ public:
 	void	GetContact(int id);
 	int		ExistId();
 	void	StartContact();
+	void	TruncateSize(std::string &str);
+	void	ShowIdContact();
 };
 
 #endif

@@ -22,9 +22,10 @@ int main(int ac, char *av[])
 	system("clear");
 	while (1)
 	{
-		std::cout << "*-----------------------------*" << std::endl;
-		std::cout << "Type your command..." << std::endl << "-";
-		std::getline(std::cin, comm);
+		std::cout << "*-------------------MAIN--------------------*" 
+			<< std::endl << "Type your command..." << std::endl << "-";
+		if (!std::getline(std::cin, comm))		// Ctrl + D
+			break;
 		for (int i = 0; comm[i]; i++)
 			comm[i] = tolower(comm[i]);
 
@@ -34,12 +35,7 @@ int main(int ac, char *av[])
 			Phone.AddContact();
 		else if (comm == "search")
 			Phone.SearchContact();
-		
-		
 	}
 	system("clear");
-	//Contact c;
-	//c.SetContact("Leonardo", "Maes", "Leo", "934 998 052", "test");
-	//c.GetContact();
 	return 0;
 }
