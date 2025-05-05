@@ -30,15 +30,15 @@ int	Account::getNbWithdrawals(void)
 
 void Account::_displayTimestamp(void)
 {
-    time_t t = time(0);   // get time now
-    std::tm *now = localtime(&t);
-    std::cout << '['
-              << std::setw(2) << std::setfill('0') << (now->tm_year + 1900)
-              << std::setw(2) << std::setfill('0') << (now->tm_mon + 1)
-              << std::setw(2) << std::setfill('0') << now->tm_mday << '_'
-              << std::setw(2) << std::setfill('0') << now->tm_hour
-              << std::setw(2) << std::setfill('0') << now->tm_min
-              << std::setw(2) << std::setfill('0') << now->tm_sec << "] ";
+	std::time_t nowTime = std::time(0); 
+	std::tm *localTime = std::localtime(&nowTime);
+
+	std::cout << "[" << std::setfill('0') << std::setw(2) << localTime->tm_year + 1900 
+			<< std::setfill('0') << std::setw(2) << localTime->tm_mon + 1
+			<< std::setfill('0') << std::setw(2) << localTime->tm_mday << "_"
+			<< std::setfill('0') << std::setw(2) << localTime->tm_hour
+			<< std::setfill('0') << std::setw(2) << localTime->tm_min
+			<< std::setfill('0') << std::setw(2) << localTime->tm_sec << "] ";
 }
 
 void Account::displayAccountsInfos(void)
