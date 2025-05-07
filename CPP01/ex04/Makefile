@@ -11,12 +11,12 @@
 # **************************************************************************** #
 
 # Compile Options
-NAME = Unnecessary_violence
+NAME = sed
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Sources
-SRC =	main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRC =	main.cpp sed.cpp
 
 # Commands
 RM = rm -rf
