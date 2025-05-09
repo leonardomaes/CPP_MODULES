@@ -25,10 +25,11 @@ sed::~sed()
 
 void	sed::replaceStr()
 {
-	/* if (this->str1 == "" || )
+	if (this->str1 == "")
 	{
-		/* code */
-	} */
+		std::cout << "Invalid input string.\n";
+		return ;
+	}
 	std::ifstream inFile(this->filename.c_str());
 	if (!inFile || !inFile.is_open())
 	{
