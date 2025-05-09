@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Compile Options
-NAME = harl
+NAME = harlFilter
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
