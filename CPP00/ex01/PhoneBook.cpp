@@ -51,7 +51,6 @@ void    PhoneBook::AddContact()
 
 	if (id == MAX_SIZE)
 		id = 0;
-	system("clear");
 	std::cout << "*----------------ADD-CONTACT----------------*" << std::endl;
 	while (First.empty()){
 		std::cout << "First Name:";
@@ -91,7 +90,6 @@ void	PhoneBook::SearchContact()
 	int count = 0;
 	std::string	comm = "";
 
-	system("clear");
 	std::cout << "*------------------CONTACTS-----------------*" << std::endl;
 	for (int i = 0; i < MAX_SIZE; ++i)	//Count how much contacts exists
 	{
@@ -143,13 +141,10 @@ void	PhoneBook::SearchContact()
 		else if (i == 0)
 		{
 			std::cout << "Leaving contact list.." << std::endl;
-			sleep(2);
-			system("clear");
 			break ;
 		}
 		else if (c[i-1].ExistId())
 		{
-			system("clear");
 			std::cout << "*------------------CONTACTS-----------------*" << std::endl;
 			if (count == 8)
 				c[(id + (i-1)) % MAX_SIZE].ShowIdContact();

@@ -19,23 +19,18 @@ int main(int ac, char *av[])
 	(void)ac;
 	(void)av;
 	Phone.StartContacts();
-	system("clear");
 	while (1)
 	{
 		std::cout << "*-------------------MAIN--------------------*" 
 			<< std::endl << "Type your command..." << std::endl << "-";
-		if (!std::getline(std::cin, comm))		// Ctrl + D
+		if (!std::getline(std::cin, comm))
 			break;
-		for (int i = 0; comm[i]; i++)
-			comm[i] = tolower(comm[i]);
-
-		if (comm == "exit")
+		if (comm == "EXIT")
 			break;
-		else if (comm == "add")
+		else if (comm == "ADD")
 			Phone.AddContact();
-		else if (comm == "search")
+		else if (comm == "SEARCH")
 			Phone.SearchContact();
 	}
-	system("clear");
 	return 0;
 }

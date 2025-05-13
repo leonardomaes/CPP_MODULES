@@ -60,7 +60,7 @@ Account::Account(int initial_deposit)
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 			<< ";amount:" << _amount
-			<< ";Created\n";
+			<< ";created\n";
 }
 
 Account::~Account(void)

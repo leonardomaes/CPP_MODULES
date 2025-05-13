@@ -12,7 +12,7 @@
 
 # Compile Options
 NAME = Account
-CC = c++
+CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Sources
@@ -26,7 +26,7 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+	@$(CXX) $(CPPFLAGS) -o $(NAME) $(OBJ)
 
 clean:
 			$(RM) $(OBJ)
