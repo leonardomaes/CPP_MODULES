@@ -63,7 +63,7 @@ void    PhoneBook::AddContact()
 		if (!std::getline(std::cin, Last))
 			return ;
 	}
-	while (Nick.empty())
+	while (Nick.empty() || Nick == "")
 	{
 		std::cout << "Nickname:";
 		if (!std::getline(std::cin, Nick))

@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 18:09:17 by lmaes             #+#    #+#             */
-/*   Updated: 2025/05/09 18:09:17 by lmaes            ###   ########.fr       */
+/*   Created: 2025/05/15 17:55:36 by lmaes             #+#    #+#             */
+/*   Updated: 2025/05/15 17:55:37 by lmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
 #include <iostream>
-#include <fstream>
 #include <string>
-#include <sstream>
 #include <cstring>
 #include <string.h>
-#include <cmath>
 
-class Fixed
+class ClapTrap
 {
 private:
-	int fixedNumber;
-	static const int bits = 8;
+	std::string name;
+	int	hitPoints;
+	int	energyPoints;
+	int attackPoints;
 public:
-	Fixed();
-	Fixed(const Fixed &obj);
-	Fixed(const int num);
-	Fixed(const float num);
-	Fixed &operator=(const Fixed &f);
-	~Fixed();
+	void	attack(const std::string& target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
 
-	int		getRawBits(void) const;
-	void	setRawBits(int const raw);
-	float	toFloat(void) const;
-	int		toInt(void) const;
+	ClapTrap();	// Constructor
+	ClapTrap(std::string n);
+	ClapTrap &operator=(const ClapTrap &f);	// Assign
+	ClapTrap(const ClapTrap &obj);	// Copy
+	~ClapTrap();	// Destructor
 };
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed);

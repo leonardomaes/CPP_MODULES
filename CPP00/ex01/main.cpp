@@ -23,6 +23,7 @@ int main(int ac, char *av[])
 	{
 		std::cout << "*-------------------MAIN--------------------*" 
 			<< std::endl << "Type your command..." << std::endl << "-";
+		//std::getline(std::cin, comm);
 		if (!std::getline(std::cin, comm))
 			break;
 		if (comm == "EXIT")
