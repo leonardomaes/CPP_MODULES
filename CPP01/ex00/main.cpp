@@ -14,7 +14,7 @@
 
 int	main()
 {
-	Zombie *z = newZombie("ABC");
+	Zombie *z = newZombie("ABC");	// Heap Allocation
 	z->announce();
 	randomChump("123");
 	delete z;

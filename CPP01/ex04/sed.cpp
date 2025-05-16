@@ -45,7 +45,7 @@ void	sed::replaceStr()
 	std::string line;
 	std::string outline;
 	while (std::getline(inFile, line))
-	{
+	{	
 		size_t i = 0;
 		while ((i = line.find(this->str1, i)) != std::string::npos)
 		{

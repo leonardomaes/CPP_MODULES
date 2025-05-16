@@ -17,6 +17,11 @@ void Zombie::announce(void)
 	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
+Zombie::Zombie()
+{
+
+}
+
 Zombie::Zombie(std::string &input)
 {
 	name = input;
@@ -24,5 +29,5 @@ Zombie::Zombie(std::string &input)
 
 Zombie::~Zombie()
 {
-	std::cout << "*" << name << " was destroyed*" << std::endl;
+	std::cout << "*" << this->name << " was destroyed*" << std::endl;
 }

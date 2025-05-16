@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 15:03:02 by lmaes             #+#    #+#             */
-/*   Updated: 2025/05/05 15:03:02 by lmaes            ###   ########.fr       */
+/*   Created: 2025/05/16 17:26:09 by lmaes             #+#    #+#             */
+/*   Updated: 2025/05/16 17:26:09 by lmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "ClapTrap.hpp"
 
-#include <iostream>
-#include <cctype>
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <unistd.h>
-#include <cmath>
-#include <limits>
-#include <cstring>
-
-class Zombie
+class ScavTrap : public ClapTrap
 {
 private:
-	std::string name;
+    /* data */
 public:
-	Zombie();
-	Zombie(std::string &input);
-	~Zombie();
-	void	announce(void);
+    ScavTrap(/* args */);
+    ~ScavTrap();
 };
 
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
