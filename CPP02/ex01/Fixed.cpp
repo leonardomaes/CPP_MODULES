@@ -39,7 +39,7 @@ Fixed::Fixed(const float num)
 	this->fixedNumber = roundf(num * (1 << this->bits));
 }
 
-//Copy Constructor
+//Copy Assignment Constructor
 Fixed &Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment constructor called\n";
@@ -74,7 +74,7 @@ int	Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return static_cast<float>(this->fixedNumber) / (1 << this->bits);
+	return static_cast<float>(this->fixedNumber) / (1 << this->bits); // n / 256 (1 << 8)
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)

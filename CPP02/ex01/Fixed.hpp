@@ -27,11 +27,11 @@ private:
 	static const int bits = 8;
 public:
 	Fixed();
-	Fixed(const Fixed &obj);
-	Fixed(const int num);
 	Fixed(const float num);
 	Fixed &operator=(const Fixed &f);
 	~Fixed();
+	Fixed(const Fixed &obj);
+	Fixed(const int num);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
