@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 15:02:41 by lmaes             #+#    #+#             */
-/*   Updated: 2025/05/05 15:02:42 by lmaes            ###   ########.fr       */
+/*   Created: 2025/05/27 18:25:41 by lmaes             #+#    #+#             */
+/*   Updated: 2025/05/27 18:25:42 by lmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int main()
+#include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-	ClapTrap a("Bob");
-	ScavTrap b("Joel");
-	b.guardGate();
-	a.attack("Joel");
+public:
+	FragTrap();
+	FragTrap(std::string n);
+	FragTrap(const FragTrap &obj);
+	FragTrap &operator=(const FragTrap &f);
+	~FragTrap();
 
-	return 0;
-}
+	//Functions
+	void highFivesGuys(void);
+};
+
+#endif

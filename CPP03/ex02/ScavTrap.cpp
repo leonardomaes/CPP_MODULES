@@ -22,6 +22,9 @@ ScavTrap::ScavTrap() : ClapTrap::ClapTrap()
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap::ClapTrap(n)
 {
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 	std::cout << "ScavTrap " << this->_name << " just appeared!" << std::endl;
 }
 

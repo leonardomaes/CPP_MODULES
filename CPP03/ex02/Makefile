@@ -16,7 +16,7 @@ CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Sources
-SRC =	main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC =	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 # Commands
 RM = rm -rf

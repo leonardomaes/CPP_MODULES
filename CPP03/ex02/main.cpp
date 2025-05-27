@@ -11,13 +11,30 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
 	ClapTrap a("Bob");
 	ScavTrap b("Joel");
-	b.guardGate();
-	a.attack("Joel");
+	FragTrap c("Leo");
+	/*
+	Falta resolver a questao das mensagens 
+	do FragTrap e do ScavTrap caso nao tenham energyPoints
+	*/
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
+	c.beRepaired(5);
 
 	return 0;
 }

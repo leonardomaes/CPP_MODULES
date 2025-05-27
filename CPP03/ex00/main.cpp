@@ -15,8 +15,21 @@
 int main()
 {
 	ClapTrap a("Bob");
-	a.printStatus();
+	ClapTrap b;
+	b = a;
 	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.attack("Joel");
+	a.beRepaired(5);
+	b.beRepaired(5);
 
 	return 0;
 }
