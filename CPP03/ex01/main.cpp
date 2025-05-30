@@ -16,8 +16,19 @@ int main()
 {
 	ClapTrap a("Bob");
 	ScavTrap b("Joel");
+	a.printStatus();
+	b.printStatus();
+
+	for (size_t i = 0; i < 10; i++)
+		a.attack("JOel");
+	for (size_t i = 0; i < 50; i++)
+		b.beRepaired(5);
+
 	b.guardGate();
-	a.attack("Joel");
+	a.printStatus();
+	b.printStatus();
+	a.beRepaired(5);
+	b.attack("Bob");
 
 	return 0;
 }

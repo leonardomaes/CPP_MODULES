@@ -36,7 +36,7 @@ public:
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
-	// void	printStatus(void);
+	void	printStatus(void);
 };
 
 #endif

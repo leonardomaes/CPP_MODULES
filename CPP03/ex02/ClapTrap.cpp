@@ -54,23 +54,23 @@ void	ClapTrap::attack(const std::string& target)
 		this->_energyPoints--;
 	}
 	else if (this->_energyPoints <= 0)
-		std::cout << "ClapTrap has no enough energy points to attack\n";
+		std::cout << "ClapTrap " << this->_name << " has no enough energy points to attack\n";
 	else
-		std::cout << "ClapTrap has no enough points to attack\n";
+		std::cout << "ClapTrap " << this->_name << " has no enough points to attack\n";
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if ((this->_hitPoints > 0) && (this->_energyPoints > 0))
 	{
-		std::cout << "ClapTrap was repaired with " << amount << " points." << std::endl;
+		std::cout << "ClapTrap " << this->_name << " was repaired with " << amount << " points." << std::endl;
 		this->_hitPoints += amount;
 		this->_energyPoints--;
 	}
 	else if (this->_energyPoints <= 0)
-		std::cout << "ClapTrap has no enough energy points to be repaired\n";
+		std::cout << "ClapTrap " << this->_name << " has no enough energy points to be repaired\n";
 	else
-		std::cout << "ClapTrap has no enough points to be repaired\n";
+		std::cout << "ClapTrap " << this->_name << " has no enough points to be repaired\n";
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -86,14 +86,14 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	{
 		std::cout << "ClapTrap " << this->_name << " has no more hit points remaining.\n";
 	}
-	
 }
 
-// void	ClapTrap::printStatus(void)
-// {
-// 	std::cout << "->ClapTrap status:" << std::endl
-// 			<< "->Name: " << this->_name << std::endl
-// 			<< "->hitPoints: " << this->_hitPoints << std::endl
-// 			<< "->energyPoints: " << this->_energyPoints << std::endl
-// 			<< "->attackPoints: " << this->_attackDamage << std::endl;
-// }
+void	ClapTrap::printStatus(void)
+{
+	std::cout << "---------------------------" << std::endl
+			<< "->ClapTrap status:" << std::endl
+			<< "->Name: " << this->_name << std::endl
+			<< "->hitPoints: " << this->_hitPoints << std::endl
+			<< "->energyPoints: " << this->_energyPoints << std::endl
+			<< "->attackPoints: " << this->_attackDamage << std::endl;
+}

@@ -33,10 +33,10 @@ public:
 	~ClapTrap();				// Destructor
 
 	// Functions
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
-	// void	printStatus(void);
+	virtual void	attack(const std::string& target);
+	virtual void	takeDamage(unsigned int amount);
+	virtual void	beRepaired(unsigned int amount);
+	virtual void	printStatus(void);
 };
 
 #endif

@@ -17,17 +17,9 @@ int main()
 	ClapTrap a("Bob");
 	ClapTrap b;
 	b = a;
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
-	a.attack("Joel");
+	for (size_t i = 0; i < 10; i++)
+		b.beRepaired(5);
+	b.attack("leo");
 	a.beRepaired(5);
 	b.beRepaired(5);
 
