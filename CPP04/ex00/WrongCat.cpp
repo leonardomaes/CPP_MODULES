@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat() : Animal::Animal()
+WrongCat::WrongCat() : WrongAnimal::WrongAnimal()
 {
-	this->type = "Cat";
-	std::cout << "Constructor called (Cat)" << std::endl;
+	this->type = "WrongCat";
+	std::cout << "Constructor called (WrongCat)" << std::endl;
 }
 
-Cat::Cat(const Cat &obj) : Animal(obj)
+WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(obj)
 {
-	std::cout << "Copy Constructor called (Cat)" << std::endl;
+	std::cout << "Copy Constructor called (WrongCat)" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &obj)
+WrongCat &WrongCat::operator=(const WrongCat &obj)
 {
-	Animal::operator=(obj);
-	std::cout << "Assign called (Cat)" << std::endl;
+	WrongAnimal::operator=(obj);
+	std::cout << "Assign called (WrongCat)" << std::endl;
 	return (*this);
 }
 
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	std::cout << "Destructor called (Cat)" << std::endl;
+	std::cout << "Destructor called (WrongCat)" << std::endl;
 }
 
-void Cat::makeSound() const
+void WrongCat::makeSound() const
 {
 	std::cout << "Meow... Meow!" << std::endl;
 }
