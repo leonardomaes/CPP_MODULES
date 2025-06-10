@@ -17,6 +17,8 @@
 
 class Cat : public Animal
 {
+private:
+	Brain *b;
 public:
 	Cat();
 	Cat(const Cat &obj);
@@ -24,7 +26,8 @@ public:
 	~Cat();
 
 	// Functions
-	void makeSound() const;
+	void 	makeSound() const;
+	void	printIdea(int num);
 };
 
 #endif

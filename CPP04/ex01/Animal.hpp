@@ -17,6 +17,7 @@
 #include <string>
 #include <cstring>
 #include <string.h>
+#include "Brain.hpp"
 
 class Animal
 {
@@ -26,7 +27,7 @@ public:
 	Animal(); 								// Constructor
 	Animal(const Animal &obj);				// Copy Constructor
 	Animal &operator=(const Animal &obj);	// Assign Operator
-	~Animal();								// Destructor
+	virtual ~Animal();								// Destructor
 
 	// Functions
 	virtual void makeSound() const;

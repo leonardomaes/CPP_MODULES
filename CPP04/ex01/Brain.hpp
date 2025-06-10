@@ -24,6 +24,10 @@ public:
 	Brain(const Brain &obj);
 	Brain &operator=(const Brain &obj);
 	~Brain();
+
+	//Functions
+	void	printIdea(int num);
+	//void	setIdea(std::string i);
 };
 
 #endif

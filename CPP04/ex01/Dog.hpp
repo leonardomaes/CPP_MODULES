@@ -17,6 +17,8 @@
 
 class Dog : public Animal
 {
+private:
+	Brain *b;
 public:
 	Dog();
 	Dog(const Dog &obj);

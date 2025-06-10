@@ -15,6 +15,7 @@
 Cat::Cat() : Animal::Animal()
 {
 	this->type = "Cat";
+	this->b = new Brain();
 	std::cout << "Constructor called (Cat)" << std::endl;
 }
 
@@ -32,10 +33,19 @@ Cat &Cat::operator=(const Cat &obj)
 
 Cat::~Cat()
 {
+	delete this->b;
 	std::cout << "Destructor called (Cat)" << std::endl;
 }
 
 void Cat::makeSound() const
 {
 	std::cout << "Meow... Meow!" << std::endl;
+}
+
+void Cat::printIdea(int num)
+{
+	if (num > 0 && num < 100)
+		this->b->printIdea(num);
+	else
+		std::cout << "Invalid num" << std::endl;
 }
