@@ -17,15 +17,15 @@
 int main()
 {
 	{
-		const Animal* meta = new Animal();
+		//const Animal* meta = new Animal();
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
 		i->makeSound(); //will output the cat sound!
 		j->makeSound();
-		meta->makeSound();
-		delete	meta;
+		//meta->makeSound();
+		//delete	meta;
 		delete	j;
 		delete	i;
 	}
@@ -88,6 +88,13 @@ int main()
 	{
 		Dog tmp = basic;
 	}
-	std::cout << "------------------------" << std::endl;
+	std::cout << "------------------------" << std::endl << std::endl;
+	std::cout << "------------Abstract Class------------" << std::endl;
+	{
+		//Animal test;
+		//Animal *test = new Animal();
+		Animal *meta = new Dog();  // It is a pointer to a Dog, and not to the Animal class
+		delete meta;
+	}
 	return 0;
 }

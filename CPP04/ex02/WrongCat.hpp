@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class Brain
+class WrongCat : public WrongAnimal
 {
-private:
-	std::string ideas[100];
 public:
-	Brain();
-	Brain(const Brain &obj);
-	Brain &operator=(const Brain &obj);
-	~Brain();
+	WrongCat();
+	WrongCat(const WrongCat &obj);
+	WrongCat &operator=(const WrongCat &obj);
+	~WrongCat();
 
-	//Functions
-	std::string	getIdea(int num) const;
-	void	setIdea(std::string idea, int num);
+	// Functions
+	void makeSound() const;
 };
 
 #endif
