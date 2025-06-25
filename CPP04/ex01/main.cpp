@@ -16,21 +16,24 @@
 
 int main()
 {
+	std::cout << "---------------------EX00--------------------------" << std::endl;
 	{
-		const Animal* meta = new Animal();
+		std::cout << "------------Animal------------" << std::endl;
+		//const Animal* meta = new Animal();
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
 		i->makeSound(); //will output the cat sound!
 		j->makeSound();
-		meta->makeSound();
-		delete	meta;
+		//meta->makeSound();
+		//delete	meta;
 		delete	j;
 		delete	i;
 	}
 	std::cout << std::endl;
 	{
+		std::cout << "------------Wrong Animal------------" << std::endl;
 		const WrongAnimal* meta = new WrongAnimal();
 		const Animal* j = new Dog();
 		const WrongAnimal* i = new WrongCat();
@@ -44,8 +47,10 @@ int main()
 		delete	i;
 	}
 	std::cout << std::endl;
+	std::cout << "---------------------EX01--------------------------" << std::endl;
 	std::cout << std::endl;
-	{								// Subject main
+	{
+		std::cout << "------------Subject main------------" << std::endl;
 		const Animal *j = new Dog();
 		const Animal *i = new Cat();
 
@@ -53,12 +58,15 @@ int main()
 		delete i;
 	}
 	std::cout << std::endl;
-	{								// My main
+	{
+		std::cout << "------------My main------------" << std::endl;
 		int max = 10;
 		Animal *animals[max];
 		std::cout << "------------Constructors------------" << std::endl;
+		std::cout << "-Dogs:" << std::endl;
 		for (int i = 0; i < max/2; i++)			// Creating Dogs
 			animals[i] = new Dog();
+		std::cout << "-Cats:" << std::endl;
 		for (int i = max/2; i < max; i++)		// Creating Cats
 			animals[i] = new Cat();
 		std::cout << "------------Destructors------------" << std::endl;
@@ -69,25 +77,43 @@ int main()
 		Cat cat;
 		Dog dog;
 
+		cat.getBrain()->setIdea("Meow! Meow!", 40);
 		Cat copy(cat);
-		std::cout << "-------------Original---------------" << std::endl;
+		std::cout << "----------------------------" << std::endl;
+		std::cout << "-Cat Ideas:" << std::endl;
 		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(0) << std::endl;
 		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(1) << std::endl;
 		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(2) << std::endl;
+		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(40) << std::endl;
 		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(101) << std::endl;
-		std::cout << "-------------Copy---------------" << std::endl;
+		std::cout << "-copyCat Ideas:" << std::endl;
 		std::cout << "Cat Idea: " << copy.getBrain()->getIdea(0) << std::endl;
 		std::cout << "Cat Idea: " << copy.getBrain()->getIdea(1) << std::endl;
 		std::cout << "Cat Idea: " << copy.getBrain()->getIdea(2) << std::endl;
+		std::cout << "Cat Idea: " << cat.getBrain()->getIdea(40) << std::endl;
 		std::cout << "Cat Idea: " << copy.getBrain()->getIdea(101) << std::endl;
+		dog.getBrain()->setIdea("Woof! Woof!", 50);
+		Dog copyDog(dog);
+		std::cout << "----------------------------" << std::endl;
+		std::cout << "-Dog Ideas:" << std::endl;
+		std::cout << "Dog Idea: " << dog.getBrain()->getIdea(0) << std::endl;
+		std::cout << "Dog Idea: " << dog.getBrain()->getIdea(1) << std::endl;
+		std::cout << "Dog Idea: " << dog.getBrain()->getIdea(2) << std::endl;
+		std::cout << "Cat Idea: " << dog.getBrain()->getIdea(50) << std::endl;
+		std::cout << "Dog Idea: " << dog.getBrain()->getIdea(101) << std::endl;
+		std::cout << "-copyDog Ideas:" << std::endl;
+		std::cout << "Dog Idea: " << copyDog.getBrain()->getIdea(0) << std::endl;
+		std::cout << "Dog Idea: " << copyDog.getBrain()->getIdea(1) << std::endl;
+		std::cout << "Dog Idea: " << copyDog.getBrain()->getIdea(2) << std::endl;
+		std::cout << "Cat Idea: " << copyDog.getBrain()->getIdea(50) << std::endl;
+		std::cout << "Dog Idea: " << copyDog.getBrain()->getIdea(101) << std::endl;
 
-		std::cout << "------------Final------------" << std::endl;
+		std::cout << "------------Destructors------------" << std::endl;
 	}
-	std::cout << "------------------------" << std::endl;
+	std::cout << "------------Test------------" << std::endl;
 	Dog basic;
 	{
 		Dog tmp = basic;
 	}
-	std::cout << "------------------------" << std::endl;
 	return 0;
 }

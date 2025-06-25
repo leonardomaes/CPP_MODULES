@@ -18,10 +18,10 @@
 class WrongCat : public WrongAnimal
 {
 public:
-	WrongCat();
-	WrongCat(const WrongCat &obj);
-	WrongCat &operator=(const WrongCat &obj);
-	~WrongCat();
+	WrongCat(); 								// Constructor
+	WrongCat(const WrongCat &obj);				// Copy Constructor
+	WrongCat &operator=(const WrongCat &obj);	// Assign Operator
+	~WrongCat();								// Destructor
 
 	// Functions
 	void makeSound() const;

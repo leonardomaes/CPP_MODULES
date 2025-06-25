@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 12:24:11 by lmaes             #+#    #+#             */
-/*   Updated: 2025/06/05 12:24:12 by lmaes            ###   ########.fr       */
+/*   Created: 2025/06/20 15:52:06 by lmaes             #+#    #+#             */
+/*   Updated: 2025/06/20 15:52:07 by lmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#include "Bureaucrat.hpp"
 
-#include "Animal.hpp"
-
-class Cat : public Animal
+int main()
 {
-public:
-	Cat(); 								// Constructor
-	Cat(const Cat &obj);				// Copy Constructor
-	Cat &operator=(const Cat &obj);		// Assign Operator
-	~Cat();								// Destructor
-
-	// Functions
-	void makeSound() const;
-};
-
-#endif
+	{
+		
+	}
+	return (0);
+}
 

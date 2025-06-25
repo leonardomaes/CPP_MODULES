@@ -23,10 +23,10 @@ class WrongAnimal
 protected:
 	std::string type;
 public:
-	WrongAnimal(); 								// Constructor
+	WrongAnimal(); 										// Constructor
 	WrongAnimal(const WrongAnimal &obj);				// Copy Constructor
-	WrongAnimal &operator=(const WrongAnimal &obj);	// Assign Operator
-	~WrongAnimal();								// Destructor
+	WrongAnimal &operator=(const WrongAnimal &obj);		// Assign Operator
+	~WrongAnimal();										// Destructor
 
 	// Functions
 	void makeSound() const;

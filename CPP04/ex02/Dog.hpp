@@ -27,7 +27,7 @@ public:
 
 	// Functions
 	void makeSound() const;
-	Brain	getBrain();
+	Brain	*getBrain();
 };
 
 #endif

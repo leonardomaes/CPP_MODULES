@@ -26,7 +26,7 @@ public:
 	Animal(); 								// Constructor
 	Animal(const Animal &obj);				// Copy Constructor
 	Animal &operator=(const Animal &obj);	// Assign Operator
-	~Animal();								// Destructor
+	virtual ~Animal();						// Destructor
 
 	// Functions
 	virtual void makeSound() const;

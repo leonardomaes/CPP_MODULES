@@ -18,10 +18,10 @@
 class Dog : public Animal
 {
 public:
-	Dog();
-	Dog(const Dog &obj);
-	Dog &operator=(const Dog &obj);
-	~Dog();
+	Dog();								// Constructor
+	Dog(const Dog &obj);				// Copy Constructor
+	Dog &operator=(const Dog &obj);		// Assign Operator
+	~Dog();								// Destructor
 
 	// Functions
 	void makeSound() const;
