@@ -24,8 +24,16 @@ private:
 	const int	_execGrade;
 public:
 	Form();
+	Form(std::string name, int signGrade, int execGrade);
+	Form(const Form &obj);
+	Form &operator=(const Form &obj);
 	~Form();
 
+	// Getters
+	std::string getName() const;
+	int	getSignGrade() const;
+	int getExecGrade() const;
+	bool getIsSigned() const;
 
 	//Exceptions
 	class GradeTooLowException : public std::exception
@@ -33,7 +41,7 @@ public:
 	public:
 		const char* what() const throw()
 		{
-			return "";
+			return "Grade Too Low!!";
 		}
 	};
 	class GradeTooHighException : public std::exception
@@ -41,11 +49,13 @@ public:
 	public:
 		const char* what() const throw()
 		{
-			return "";
+			return "Grade Too High!!";
 		}
 	};
-	
-	
+	// Functions
+	void	beSigned(const Bureaucrat &obj);
 };
+
+std::ostream &operator<<(std::ostream &out, const Form &obj);
 
 #endif

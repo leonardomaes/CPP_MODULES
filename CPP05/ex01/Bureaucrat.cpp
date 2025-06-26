@@ -20,6 +20,7 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name)
 {
+	std::cout << "Constructor called (Bureaucrat)" << std::endl;
 	if (grade > 150)
 		throw GradeTooLowException();
 	else if (grade < 1)
@@ -72,6 +73,19 @@ void	Bureaucrat::decGrade()
 		this->_grade += 1;
 	else
 		throw GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(Form &obj)
+{
+	try
+	{
+		obj.beSigned(*this);
+		std::cout << this->getName() << " signed " << obj.getName();
+	}
+	catch(std::exception & e)
+	{
+		std::cerr << this->getName() << " couldn't sign " << obj.getName() << " because " << e.what() << ".\n";
+	}
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj)

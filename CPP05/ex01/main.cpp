@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 int main()
 {
 	{
-		
+		Bureaucrat a("Name", 10);
+		Form b("Paper", 15, 15);
+		a.signForm(b);
 	}
 	return (0);
 }
-

@@ -18,6 +18,8 @@
 #include <cstring>
 #include <string.h>
 
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -51,6 +53,9 @@ public:
 			return "Grade too High!!";
 		}
 	};
+
+	// Functions
+	void	signForm(Form &obj);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
