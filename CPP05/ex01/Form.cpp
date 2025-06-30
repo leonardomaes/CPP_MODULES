@@ -26,7 +26,7 @@ Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSig
 		throw GradeTooLowException();
 }
 
-Form::Form(const Form &obj): _name(obj._name), _signGrade(obj._signGrade), _execGrade(obj._execGrade), _isSigned(obj._isSigned)
+Form::Form(const Form &obj): _name(obj._name),  _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
 	std::cout << "Copy constructor called (Form)" << std::endl;
 }
@@ -34,8 +34,11 @@ Form::Form(const Form &obj): _name(obj._name), _signGrade(obj._signGrade), _exec
 Form& Form::operator=(const Form &obj)
 {
 	std::cout << "Assign called (Form)" << std::endl;
-	Form a(obj);
-	return a;
+	if (this != &obj)
+	{
+		this->_isSigned = obj._isSigned;
+	}
+	return *this;
 }
 
 Form::~Form()
