@@ -46,25 +46,13 @@ Form::~Form()
 	std::cout << "Destructor called (Form)" << std::endl;
 }
 
-std::string Form::getName() const
-{
-	return (this->_name);
-}
+std::string Form::getName() const { return (this->_name); }
+int Form::getSignGrade() const { return (this->_signGrade); }
+int Form::getExecGrade() const { return (this->_execGrade); }
+bool Form::getIsSigned() const { return (this->_isSigned); }
 
-int Form::getSignGrade() const
-{
-	return (this->_signGrade);
-}
-
-int Form::getExecGrade() const
-{
-	return (this->_execGrade);
-}
-
-bool Form::getIsSigned() const
-{
-	return (this->_isSigned);
-}
+const char *Form::GradeTooHighException::what() const throw() { return "Grade High Low"; }
+const char *Form::GradeTooLowException::what() const throw() { return "Grade Too Low"; }
 
 void Form::beSigned(const Bureaucrat &obj)
 {

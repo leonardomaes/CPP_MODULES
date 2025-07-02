@@ -16,6 +16,7 @@ AForm::AForm(): _name("default"), _isSigned(false), _signGrade(150), _execGrade(
 {
 	std::cout << "Constructor called (AForm)" << std::endl;
 }
+
 AForm::AForm(std::string name, std::string target, int signGrade, int execGrade) : _name(name), _target(target), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	std::cout << "Constructor called (AForm)" << std::endl;
@@ -24,10 +25,12 @@ AForm::AForm(std::string name, std::string target, int signGrade, int execGrade)
 	else if (signGrade > 150 || execGrade > 150)
 		throw GradeTooLowException();
 }
+
 AForm::AForm(const AForm &obj): _name(obj._name),  _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
 	std::cout << "Copy constructor called (AForm)" << std::endl;
 }
+
 AForm& AForm::operator=(const AForm &obj)
 {
 	std::cout << "Assign called (AForm)" << std::endl;
@@ -37,21 +40,36 @@ AForm& AForm::operator=(const AForm &obj)
 	}
 	return *this;
 }
+
 AForm::~AForm()
 {
 	std::cout << "Destructor called (AForm)" << std::endl;
 }
 
-std::string AForm::getName() const { return (this->_name); }
-std::string	AForm::getTarget() const { return (this->_target); }
-int AForm::getSignGrade() const { return (this->_signGrade); }
-int AForm::getExecGrade() const { return (this->_execGrade); }
-bool AForm::getIsSigned() const { return (this->_isSigned); }
+std::string AForm::getName() const
+{
+	return (this->_name);
+}
 
-const char *AForm::GradeTooHighException::what() const throw() { return "Grade Too High!!"; }
-const char *AForm::GradeTooLowException::what() const throw() { return "Grade Too Low!!"; }
-const char *AForm::FormNotSignedException::what() const throw() { return "Form is not signed!!"; }
+std::string	AForm::getTarget() const
+{
+	return (this->_target);
+}
 
+int AForm::getSignGrade() const
+{
+	return (this->_signGrade);
+}
+
+int AForm::getExecGrade() const
+{
+	return (this->_execGrade);
+}
+
+bool AForm::getIsSigned() const
+{
+	return (this->_isSigned);
+}
 
 void AForm::beSigned(const Bureaucrat &obj)
 {
@@ -59,6 +77,7 @@ void AForm::beSigned(const Bureaucrat &obj)
 		throw	GradeTooLowException();
 	this->_isSigned = true;
 }
+
 void	AForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getIsSigned() == false)
@@ -67,6 +86,7 @@ void	AForm::execute(Bureaucrat const & executor) const
 		throw	GradeTooLowException();
 	this->action();
 }
+
 std::ostream &operator<<(std::ostream &out, const AForm &obj)
 {
 	out << "AForm: " << obj.getName() << " Signed: " << (obj.getIsSigned() ? "Yes" : "No") << "\nSign grade: " << obj.getSignGrade() << "\nExec grade: " << obj.getExecGrade() << ".";

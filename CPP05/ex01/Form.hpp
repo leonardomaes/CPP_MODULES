@@ -36,21 +36,11 @@ public:
 	bool getIsSigned() const;
 
 	//Exceptions
-	class GradeTooLowException : public std::exception
-	{
-	public:
-		const char* what() const throw()
-		{
-			return "Grade Too Low!!";
-		}
+	class GradeTooLowException : public std::exception {
+		const char* what() const throw();
 	};
-	class GradeTooHighException : public std::exception
-	{
-	public:
-		const char* what() const throw()
-		{
-			return "Grade Too High!!";
-		}
+	class GradeTooHighException : public std::exception {
+		const char* what() const throw();
 	};
 	// Functions
 	void	beSigned(const Bureaucrat &obj);

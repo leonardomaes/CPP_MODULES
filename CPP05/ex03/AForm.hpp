@@ -37,16 +37,30 @@ public:
 	bool getIsSigned() const;
 
 	//Exceptions
-	class GradeTooLowException : public std::exception {
-		const char* what() const throw();
+	class GradeTooLowException : public std::exception
+	{
+	public:
+		const char* what() const throw()
+		{
+			return "Grade Too Low!!";
+		}
 	};
-	class GradeTooHighException : public std::exception {
-		const char* what() const throw();
+	class GradeTooHighException : public std::exception
+	{
+	public:
+		const char* what() const throw()
+		{
+			return "Grade Too High!!";
+		}
 	};
-	class FormNotSignedException : public std::exception{
-		const char* what() const throw();
+	class FormNotSignedException : public std::exception
+	{
+	public:
+		const char* what() const throw()
+		{
+			return "Form is not signed!!";
+		}
 	};
-
 	// Functions
 	virtual void	beSigned(const Bureaucrat &obj);
 	virtual void	action() const = 0;
