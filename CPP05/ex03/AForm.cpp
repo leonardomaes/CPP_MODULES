@@ -16,7 +16,6 @@ AForm::AForm(): _name("default"), _isSigned(false), _signGrade(150), _execGrade(
 {
 	std::cout << "Constructor called (AForm)" << std::endl;
 }
-
 AForm::AForm(std::string name, std::string target, int signGrade, int execGrade) : _name(name), _target(target), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	std::cout << "Constructor called (AForm)" << std::endl;
@@ -25,12 +24,10 @@ AForm::AForm(std::string name, std::string target, int signGrade, int execGrade)
 	else if (signGrade > 150 || execGrade > 150)
 		throw GradeTooLowException();
 }
-
 AForm::AForm(const AForm &obj): _name(obj._name),  _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
 	std::cout << "Copy constructor called (AForm)" << std::endl;
 }
-
 AForm& AForm::operator=(const AForm &obj)
 {
 	std::cout << "Assign called (AForm)" << std::endl;
@@ -40,36 +37,16 @@ AForm& AForm::operator=(const AForm &obj)
 	}
 	return *this;
 }
-
 AForm::~AForm()
 {
 	std::cout << "Destructor called (AForm)" << std::endl;
 }
 
-std::string AForm::getName() const
-{
-	return (this->_name);
-}
-
-std::string	AForm::getTarget() const
-{
-	return (this->_target);
-}
-
-int AForm::getSignGrade() const
-{
-	return (this->_signGrade);
-}
-
-int AForm::getExecGrade() const
-{
-	return (this->_execGrade);
-}
-
-bool AForm::getIsSigned() const
-{
-	return (this->_isSigned);
-}
+std::string AForm::getName() const { return (this->_name); }
+std::string	AForm::getTarget() const { return (this->_target); }
+int AForm::getSignGrade() const { return (this->_signGrade); }
+int AForm::getExecGrade() const { return (this->_execGrade); }
+bool AForm::getIsSigned() const { return (this->_isSigned); }
 
 void AForm::beSigned(const Bureaucrat &obj)
 {

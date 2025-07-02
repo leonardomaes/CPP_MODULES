@@ -10,35 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "AForm.hpp"
+#include "Intern.hpp"
+
 int main()
 {
-	try {
-		Bureaucrat quim("quim", 70);
-		ShrubberyCreationForm f1("manuel");		//Sign: 145  Exec: 137
-		RobotomyRequestForm f2("miguel");		//Sign: 72   Exec: 45
-		PresidentialPardonForm f3("quimzinho");	//Sign: 25   Exec: 5
-
-		std::cout << std::endl;
-		quim.signForm(f1);
-		std::cout << std::endl;
-		quim.signForm(f2);
-		std::cout << std::endl;
-		quim.signForm(f3);
-		std::cout << std::endl;
-		quim.executeForm(f1);
-		std::cout << std::endl;
-		quim.executeForm(f2);
-		std::cout << std::endl;
-		quim.executeForm(f3);
-		std::cout << std::endl;
-	}
-	catch (const std::exception &e) {
-		std::cerr << e.what() << '\n';
+	{
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 	}
 	return (0);
 }
