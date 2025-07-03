@@ -18,6 +18,29 @@ int main()
 		Intern someRandomIntern;
 		AForm* rrf;
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		delete rrf;
+	}
+	std::cout << std::endl;
+	{
+		AForm *pres;
+		Intern joaozita;
+
+		try {
+			
+			Bureaucrat joao("joao", 6);
+			pres = joaozita.makeForm("presidential pardon", "manel");
+			joao.signForm(*pres);
+			joao.executeForm(*pres);
+
+			delete (pres);
+		}
+		catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
 	}
 	return (0);
 }
+
+// 	Shrubbery		Sign: 145  Exec: 137
+// 	Robotomy		Sign: 72   Exec: 45
+//	Presidential	Sign: 25   Exec: 5

@@ -14,25 +14,25 @@
 
 Intern::Intern()
 {
-	std::cout << "Constructor called (AForm)" << std::endl;
+	std::cout << "Constructor called (Intern)" << std::endl;
 }
 
 Intern::Intern(const Intern &obj)
 {
-	std::cout << "Copy constructor called (AForm)" << std::endl;
+	std::cout << "Copy constructor called (Intern)" << std::endl;
 	*this = obj;
 }
 
 Intern &Intern::operator=(const Intern &obj)
 {
 	(void)obj;
-	std::cout << "Assign called (AForm)" << std::endl;
+	std::cout << "Assign called (Intern)" << std::endl;
 	return (*this);
 }
 
 Intern::~Intern()
 {
-	std::cout << "Destructor called (AForm)" << std::endl;
+	std::cout << "Destructor called (Intern)" << std::endl;
 }
 
 AForm *Intern::Presidential(std::string target) { return (new PresidentialPardonForm(target)); }
