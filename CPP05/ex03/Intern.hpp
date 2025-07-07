@@ -30,10 +30,11 @@ public:
 		const char* what() const throw();
 	};
 
-	AForm *makeForm(std::string formName, std::string target);
-	AForm *Presidential(std::string target);
-	AForm *Shrubbery(std::string target);
-	AForm *Robotomy(std::string target);
+	AForm	*makeForm(std::string formName, std::string target);
+	int		getLevel(std::string formName);
+	AForm	*Presidential(std::string target);
+	AForm	*Shrubbery(std::string target);
+	AForm	*Robotomy(std::string target);
 	private:
 		typedef AForm *(Intern::*memFunc)(std::string target);
 };

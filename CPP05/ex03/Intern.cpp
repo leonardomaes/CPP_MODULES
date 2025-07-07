@@ -41,23 +41,37 @@ AForm *Intern::Robotomy(std::string target) { return (new RobotomyRequestForm(ta
 
 const char *Intern::noFormName::what() const throw() { return "There is no form with this name!!"; }
 
-AForm *Intern::makeForm(std::string formName, std::string target)
+int Intern::getLevel(std::string formName)
 {
-	Intern::memFunc forms[] = {
-		&Intern::Robotomy,
-		&Intern::Shrubbery,
-		&Intern::Presidential
-	};
 	const std::string levels[3] = {"robotomy request", "shrubbery creation", "presidential pardon"};
 	for (int i = 0; i < 3; i++)
 	{
 		if (levels[i] == formName)
 		{
 			std::cout << "Intern creates " << formName << std::endl;
-			return ((this->*forms[i])(target));
+			return (i);
 		}
 	}
 	throw noFormName();
+	return (4);
+}
+
+AForm *Intern::makeForm(std::string formName, std::string target)
+{
+	try
+	{
+		Intern::memFunc forms[] = {
+			&Intern::Robotomy,
+			&Intern::Shrubbery,
+			&Intern::Presidential
+		};
+		int i = getLevel(formName);
+		return ((this->*forms[i])(target));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (NULL);
 }
 
