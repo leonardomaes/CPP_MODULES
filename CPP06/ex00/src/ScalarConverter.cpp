@@ -54,10 +54,10 @@ bool ScalarConverter::isFloat(const std::string literal)
 
 bool ScalarConverter::isDouble(const std::string literal)
 {
-	if (literal.find('.') == std::string::npos)
-		return 0;
 	if (literal == "-inf" || literal == "+inf" || literal == "nan")
 		return 1;
+	if (literal.find('.') == std::string::npos)
+		return 0;
 	std::istringstream ss(literal);
 	double d;
 	ss >> d;
@@ -184,7 +184,7 @@ int ScalarConverter::getType(const std::string literal)
 void ScalarConverter::convert(const std::string literal)
 {
 	int type = getType(literal);
-	// std::cout << type << std::endl;
+	std::cout << type << std::endl;
 	if (type == CHAR)
 	{
 		char s;

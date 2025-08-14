@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaes <lmaes@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 15:52:06 by lmaes             #+#    #+#             */
-/*   Updated: 2025/07/23 15:52:07 by lmaes            ###   ########.fr       */
+/*   Created: 2025/08/14 11:40:38 by lmaes             #+#    #+#             */
+/*   Updated: 2025/08/14 11:40:38 by lmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,13 @@
 #include <math.h>
 #include <float.h>
 #include <iomanip>
+#include <stdint.h>
 
-
-#define CHAR 1
-#define INT 2
-#define FLOAT 3
-#define DOUBLE 4
-#define INVALID 404
-
-
-class Serializer
+class Base
 {
-private:
-	/* data */
-public:
-	uintptr_t Serializer(Data* ptr);
-	Data deserialize(uintptr_t raw);
+	public:
+		virtual ~Base();
+		static Base* generate(void);
+		static void identify(Base* p);
+		static void identify(Base& p);
 };

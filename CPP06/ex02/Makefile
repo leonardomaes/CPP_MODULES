@@ -21,10 +21,16 @@ BIN_DIR := bin
 
 # Sources & Objects
 SRC =	$(SRC_DIR)/main.cpp \
-		$(SRC_DIR)/Serializer.cpp
+		$(SRC_DIR)/A.cpp \
+		$(SRC_DIR)/B.cpp \
+		$(SRC_DIR)/C.cpp \
+		$(SRC_DIR)/Base.cpp
 
 OBJ = 	$(BIN_DIR)/main.o \
-		$(BIN_DIR)/Serializer.o
+		$(BIN_DIR)/A.o \
+		$(BIN_DIR)/B.o \
+		$(BIN_DIR)/C.o \
+		$(BIN_DIR)/Base.o
 
 # Commands
 RM = rm -rf
