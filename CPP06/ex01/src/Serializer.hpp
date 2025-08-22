@@ -29,6 +29,8 @@
 #include <iomanip>
 #include <stdint.h>
 
+#include "Data.hpp"
+
 #define CHAR 1
 #define INT 2
 #define FLOAT 3

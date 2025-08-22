@@ -35,6 +35,35 @@ ScalarConverter::~ScalarConverter()
 	std::cout << "Destructor called (ScalarConverter)" << std::endl;
 }
 
+
+// bool ScalarConverter::isFloat(const std::string literal)
+// {
+// 	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
+// 		return 1;
+// 	if (literal.length() <= 1 || literal[literal.length() - 1] != 'f' || literal.find('.') == std::string::npos)
+// 		return 0;
+// 	char *end;
+// 	std::strtof(literal.c_str(), &end);
+// 	if (end == '\0')
+// 		return 0;
+// 	return 1;
+// }
+
+// bool ScalarConverter::isDouble(const std::string literal)
+// {
+// 	if (literal == "-inf" || literal == "+inf" || literal == "nan")
+// 		return 1;
+// 	if (literal.find('.') == std::string::npos)
+// 		return 0;
+// 	char *end;
+// 	std::strtod(literal.c_str(), &end);
+// 	if (end == '\0')
+// 		return 0;
+// 	return 1;
+// }
+
+
+
 bool ScalarConverter::isFloat(const std::string literal)
 {
 	if (literal.length() <= 1 || literal[literal.length() - 1] != 'f')
@@ -44,7 +73,7 @@ bool ScalarConverter::isFloat(const std::string literal)
 	if (literal.find('.') == std::string::npos)
 		return 0;
 	std::string num = literal.substr(0, literal.length() - 1);
-	std::istringstream ss(num);
+	std::stringstream ss(num);
 	float f;
 	ss >> f;
 	if (!ss.fail() && ss.eof())
@@ -58,7 +87,7 @@ bool ScalarConverter::isDouble(const std::string literal)
 		return 1;
 	if (literal.find('.') == std::string::npos)
 		return 0;
-	std::istringstream ss(literal);
+	std::stringstream ss(literal);
 	double d;
 	ss >> d;
 	if (!ss.fail() && ss.eof())
@@ -91,7 +120,7 @@ bool ScalarConverter::isInt(const std::string literal)
 	}
 	catch(const std::exception& e)
 	{
-		// std::cout << "Impossible";
+		std::cout << "Invalid argument";
 		return 0;
 	}
 	return 0;
@@ -184,7 +213,7 @@ int ScalarConverter::getType(const std::string literal)
 void ScalarConverter::convert(const std::string literal)
 {
 	int type = getType(literal);
-	std::cout << type << std::endl;
+	// std::cout << type << std::endl;
 	if (type == CHAR)
 	{
 		char s;

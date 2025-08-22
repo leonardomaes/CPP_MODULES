@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Compile Options
-NAME = ScalarConverter
+NAME = convert
 CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 

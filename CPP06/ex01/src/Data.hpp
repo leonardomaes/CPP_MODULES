@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#pragma once
+
+#include <string>
 
 struct Data
 {
@@ -18,4 +20,3 @@ struct Data
 	uint x;
 	uint y;
 };
-
