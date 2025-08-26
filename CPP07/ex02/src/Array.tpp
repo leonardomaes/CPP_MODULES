@@ -27,7 +27,7 @@ Array<T>::Array(unsigned int n) : _size(n)
 template <class T>
 Array<T>::Array(const Array &obj) : _size(obj._size)
 {
-	this->_elem = new T[obj.size()];
+	this->_elem = new T[this->_size];
 	for (size_t i = 0; i < obj._size; i++)
 		this->_elem[i] = obj._elem[i];
 	*this = obj;
@@ -36,14 +36,13 @@ Array<T>::Array(const Array &obj) : _size(obj._size)
 template <class T>
 Array<T> &Array<T>::operator=(const Array &obj)
 {
-	if (this != obj)
+	if (this != &obj)
 	{
-		if (this)
-			delete[] this->_elem;
-		this->_elem = new T[obj.size()];
+		delete[] this->_elem;
+		this->_size = obj._size;
+		this->_elem = new T[this->_size];
 		for (size_t i = 0; i < obj._size; i++)
 			this->_elem[i] = obj._elem[i];
-		this->_size = obj.size();
 	}
 	return *this;
 }
