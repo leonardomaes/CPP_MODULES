@@ -24,7 +24,7 @@ void iter(T *addr, size_t n, F f)
 }
 
 template <typename T>
-void printThis(T n)
+void printThis(const T &n)
 {
 	std::cout << n;
 }
