@@ -21,7 +21,7 @@ Array<T>::Array() : _elem(NULL), _size(0)
 template <class T>
 Array<T>::Array(unsigned int n) : _size(n)
 {
-	_elem = new T[n];
+	this->_elem = new T[n];
 }
 
 template <class T>
@@ -45,6 +45,12 @@ Array<T> &Array<T>::operator=(const Array &obj)
 			this->_elem[i] = obj._elem[i];
 	}
 	return *this;
+}
+
+template <class T>
+Array<T>::~Array()
+{
+	delete[] _elem;
 }
 
 template <class T>

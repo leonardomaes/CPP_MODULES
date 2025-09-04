@@ -31,6 +31,16 @@ int main()
 		std::cout << std::endl;
 		//iter(arr, 5, addOne<int>);
 		iter(arr, 5, printThis<int>);
+		std::cout << std::endl << std::endl;
+	}
+	{
+		// char arr1[] = {'T', 'e', 's', 't', 'e', '\0'};
+		char arr1[] = "Teste";
+
+		iter(arr1, 7, printThis<char>);
+		std::cout << std::endl;
+		iter(arr1, 7, addOne<char>);
+		iter(arr1, 7, printThis<char>);
 		std::cout << std::endl;
 	}
 

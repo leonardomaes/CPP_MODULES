@@ -20,14 +20,13 @@ int main(int, char**)
 	{
 		try
 		{
-			int * a = new int();
 			Array<int> newArray(2);
+			std::cout << "Size: " << newArray.size() << std::endl;
 			newArray[0] = 2;
 			newArray[1] = 4;
-			std::cout << *a << std::endl;
-			std::cout << newArray[0] << std::endl;
-			std::cout << newArray[1] << std::endl;
-			std::cout << newArray[3] << std::endl;
+			std::cout << newArray[0] << std::endl;	// Class
+			std::cout << newArray[1] << std::endl;	// Val = 4
+			std::cout << newArray[3] << std::endl;	// Out of Bounds
 		}
 		catch(const std::exception& e)
 		{
@@ -51,6 +50,7 @@ int main(int, char**)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		std::cout << std::endl;
 	}
 	{
 		Array<int> numbers(MAX_VAL);
