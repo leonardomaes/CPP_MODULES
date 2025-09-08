@@ -39,6 +39,8 @@ public:
 	void addNumber(int num);
 	int shortestSpan();
 	int longestSpan();
+	void addNumber(unsigned int begin, unsigned int end);
+	void addNumber(unsigned int *begin, unsigned int *end);
 };
 
 class ContainerFull : public std::exception {
@@ -46,5 +48,9 @@ class ContainerFull : public std::exception {
 };
 
 class NoSpanFound : public std::exception {
+	const char* what() const throw();
+};
+
+class OutOfRange : public std::exception {
 	const char* what() const throw();
 };

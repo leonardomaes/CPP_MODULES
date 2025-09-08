@@ -74,5 +74,23 @@ int Span::longestSpan()
 	return (cpy.back() - cpy.front());
 }
 
+void Span::addNumber(unsigned int *begin, unsigned int *end)
+{
+	std::vector<int> array(begin, end);
+	if (this->_maxNum < array.size() + this->_numbers.size())
+		throw OutOfRange();
+	this->_numbers.insert(this->_numbers.end(), array.begin(), array.end());
+}
+
+void Span::addNumber(unsigned int begin, unsigned int end)
+{
+	std::vector<int> array(begin, end);
+	if (this->_maxNum < array.size() + this->_numbers.size())
+		throw OutOfRange();
+	
+	this->_numbers.insert(this->_numbers.end(), array.begin(), array.end());
+}
+
 const char* ContainerFull::what() const throw() {	return "Container is already full";	}
+const char* OutOfRange::what() const throw() {	return "Cannot add more numbers, max capacity reached";	}
 const char* NoSpanFound::what() const throw() {	return "No Span founded";	}
