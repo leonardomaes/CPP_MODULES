@@ -52,6 +52,7 @@
 		"iomanip": "cpp",
 		"sstream": "cpp",
 		"fstream": "cpp",
-		"scalarconverter.hpp": "c"
+		"scalarconverter.hpp": "c",
+		"list": "cpp"
 	}
 }
