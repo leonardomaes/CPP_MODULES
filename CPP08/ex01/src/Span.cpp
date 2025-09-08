@@ -46,51 +46,79 @@ void Span::addNumber(int num)
 	this->_numbers.push_back(num);
 }
 
-int Span::shortestSpan()
+long Span::shortestSpan()
 {
 	if (this->_numbers.size() < 2)
 		throw NoSpanFound();
 
 	std::vector<int> cpy(this->_numbers);
 	std::sort(cpy.begin(), cpy.end());
-	int shortest = cpy[1] - cpy[0];
+	long shortest = cpy[1] - cpy[0];
 
-	for (size_t i = 1; i < this->_maxNum; i++)
+	for (size_t i = 1; i < this->_numbers.size(); i++)
 	{
-		if ((cpy[i] - cpy[i-1]) < shortest)
-			shortest = (cpy[i] - cpy[i-1]);
+		long var = (long)cpy[i] - (long)cpy[i-1];
+		if (var < shortest)
+			shortest = var;
 	}
 	return shortest;
 }
 
-int Span::longestSpan()
+unsigned long Span::longestSpan()
 {
 	if (this->_numbers.size() < 2)
 		throw NoSpanFound();
 	std::vector<int> cpy(this->_numbers);
 	std::copy(this->_numbers.begin(), this->_numbers.end(), cpy.begin());
 	std::sort(cpy.begin(), cpy.end());
-
-	return (cpy.back() - cpy.front());
+	unsigned long result = (long)cpy.back() - (long)cpy.front();
+	return (result);
 }
 
-void Span::addNumber(unsigned int *begin, unsigned int *end)
+void Span::addNumber(int *numbers) // Add with INT array
 {
-	std::vector<int> array(begin, end);
-	if (this->_maxNum < array.size() + this->_numbers.size())
+	if (this->_maxNum < sizeof(numbers) + this->_numbers.size())
 		throw OutOfRange();
-	this->_numbers.insert(this->_numbers.end(), array.begin(), array.end());
+	for (size_t i = 0; i < sizeof(numbers); i++)
+	{
+		this->addNumber(numbers[i]);
+	}
+}
+void Span::addNumber(int *numbers, size_t size) // Add with INT array
+{
+	if (this->_maxNum < sizeof(numbers) + this->_numbers.size())
+		throw OutOfRange();
+	for (size_t i = 0; i < size; i++)
+	{
+		this->addNumber(numbers[i]);
+	}
 }
 
-void Span::addNumber(unsigned int begin, unsigned int end)
+void Span::addNumber(std::vector<int> numbers) // Add with vector
 {
-	std::vector<int> array(begin, end);
-	if (this->_maxNum < array.size() + this->_numbers.size())
+	if (this->_maxNum < numbers.size() + this->_numbers.size())
 		throw OutOfRange();
-	
-	this->_numbers.insert(this->_numbers.end(), array.begin(), array.end());
+	this->_numbers.insert(this->_numbers.end(), numbers.begin(), numbers.end());
+}
+void Span::addNumber(std::vector<int> numbers, size_t size) // Add with vector
+{
+	if (this->_maxNum < numbers.size() + this->_numbers.size())
+		throw OutOfRange();
+	this->_numbers.insert(this->_numbers.end(), numbers.begin(), numbers.begin() + size);
+}
+
+void Span::printSelf(void)
+{
+	std::cout << "Printing span: " << std::endl;
+	if (this->_numbers.size() == 0)
+		throw EmptySpan();
+	for (size_t i = 0; i < this->_numbers.size(); i++)
+	{
+		std::cout << "Span[" << i << "] = " << this->_numbers[i] << std::endl;
+	}
 }
 
 const char* ContainerFull::what() const throw() {	return "Container is already full";	}
 const char* OutOfRange::what() const throw() {	return "Cannot add more numbers, max capacity reached";	}
 const char* NoSpanFound::what() const throw() {	return "No Span founded";	}
+const char* EmptySpan::what() const throw() {	return "Span is empty";	}

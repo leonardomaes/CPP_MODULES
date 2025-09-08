@@ -37,10 +37,14 @@ public:
 	Span &operator=(const Span &obj);
 
 	void addNumber(int num);
-	int shortestSpan();
-	int longestSpan();
+	long shortestSpan();
+	unsigned long longestSpan();
+	void addNumber(int *numbers);
+	void addNumber(int *numbers, size_t size);
+	void addNumber(std::vector<int> numbers);
+	void addNumber(std::vector<int> numbers, size_t size);
 	void addNumber(unsigned int begin, unsigned int end);
-	void addNumber(unsigned int *begin, unsigned int *end);
+	void printSelf();
 };
 
 class ContainerFull : public std::exception {
@@ -52,5 +56,9 @@ class NoSpanFound : public std::exception {
 };
 
 class OutOfRange : public std::exception {
+	const char* what() const throw();
+};
+
+class EmptySpan : public std::exception {
 	const char* what() const throw();
 };
