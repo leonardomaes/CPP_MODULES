@@ -46,18 +46,18 @@ void Span::addNumber(int num)
 	this->_numbers.push_back(num);
 }
 
-long Span::shortestSpan()
+unsigned long Span::shortestSpan()
 {
 	if (this->_numbers.size() < 2)
 		throw NoSpanFound();
 
 	std::vector<int> cpy(this->_numbers);
 	std::sort(cpy.begin(), cpy.end());
-	long shortest = cpy[1] - cpy[0];
+	unsigned long shortest = cpy[1] - cpy[0];
 
 	for (size_t i = 1; i < this->_numbers.size(); i++)
 	{
-		long var = (long)cpy[i] - (long)cpy[i-1];
+		unsigned long var = (long)cpy[i] - (long)cpy[i-1];
 		if (var < shortest)
 			shortest = var;
 	}
@@ -75,18 +75,9 @@ unsigned long Span::longestSpan()
 	return (result);
 }
 
-void Span::addNumber(int *numbers) // Add with INT array
-{
-	if (this->_maxNum < sizeof(numbers) + this->_numbers.size())
-		throw OutOfRange();
-	for (size_t i = 0; i < sizeof(numbers); i++)
-	{
-		this->addNumber(numbers[i]);
-	}
-}
 void Span::addNumber(int *numbers, size_t size) // Add with INT array
 {
-	if (this->_maxNum < sizeof(numbers) + this->_numbers.size())
+	if (this->_maxNum < size + this->_numbers.size())
 		throw OutOfRange();
 	for (size_t i = 0; i < size; i++)
 	{
@@ -114,7 +105,7 @@ void Span::printSelf(void)
 		throw EmptySpan();
 	for (size_t i = 0; i < this->_numbers.size(); i++)
 	{
-		std::cout << "Span[" << i << "] = " << this->_numbers[i] << std::endl;
+		std::cout << GREEN << "Span[" << RESET << i << GREEN << "] = " << RESET << this->_numbers[i] << std::endl;
 	}
 }
 

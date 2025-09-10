@@ -24,6 +24,16 @@
 #include <deque>
 #include <list>
 
+// Colors
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[37m"
+
 class Span
 {
 private:
@@ -37,13 +47,13 @@ public:
 	Span &operator=(const Span &obj);
 
 	void addNumber(int num);
-	long shortestSpan();
+	unsigned long shortestSpan();
 	unsigned long longestSpan();
-	void addNumber(int *numbers);
+
 	void addNumber(int *numbers, size_t size);
 	void addNumber(std::vector<int> numbers);
 	void addNumber(std::vector<int> numbers, size_t size);
-	void addNumber(unsigned int begin, unsigned int end);
+
 	void printSelf();
 };
 

@@ -14,8 +14,10 @@
 
 int main()
 {
+	////////////////////////// TEST 1 /////////////////////////
 	try
 	{
+		std::cout << RED << "TEST 1:" << RESET << std::endl;
 		Span sp = Span(5);
 
 		sp.addNumber(6);
@@ -32,8 +34,11 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
+
+	////////////////////////// TEST 2 /////////////////////////
 	try
 	{
+		std::cout << RED << "TEST 2:" << RESET << std::endl;
 		Span span(11);
 
 		int	numbers[11] = {2147483647, 0, 5, -5, 4 , 7, 9, 8, -2147483648, -3, 12321321};
@@ -50,12 +55,15 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
+
+	////////////////////////// TEST 3 /////////////////////////
 	try
 	{
+		std::cout << RED << "TEST 3:" << RESET << std::endl;
 		Span span(11);
-		int	numbers[11] = {2147483647, 0, 5, -5, 4 , 7, 9, 8, -2147483648, -3, 12321321};
+		int	numbers[11] = {2147483647, -2147483648, 0, 5, -5, 4 , 7, 9, 8, -3, 12321321};
 
-		span.addNumber(numbers);
+		span.addNumber(numbers, 2);
 		span.printSelf();
 		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
 		std::cout << "Longest span : " << span.longestSpan() << std::endl;
@@ -65,29 +73,18 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
+
+	////////////////////////// TEST 4 /////////////////////////
 	try
 	{
-		Span span(11);
-		int	numbers[11] = {2147483647, 0, 5, -5, 4 , 7, 9, 8, -2147483648, -3, 12321321};
-
-		span.addNumber(numbers, 4);
-		span.printSelf();
-		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
-		std::cout << "Longest span : " << span.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	std::cout << std::endl;
-	try // OK
-	{
+		std::cout << RED << "TEST 4:" << RESET << std::endl;
 		Span span(100000);
 		std::srand(time(NULL));
 		for (int i = 0; i < 100000; i++)
 		{
 			span.addNumber(rand());
 		}
+		// span.printSelf();
 		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
 		std::cout << "Longest span : " << span.longestSpan() << std::endl;
 	}
