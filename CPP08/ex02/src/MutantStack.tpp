@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/MutantStack.hpp"
 
-MutantStack::MutantStack()
+template <class T>
+MutantStack<T>::MutantStack()
 {
 }
 
-MutantStack::~MutantStack()
+template <class T>
+MutantStack<T>::~MutantStack()
 {
 }
-
-
