@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Compile Options
-NAME = Span
+NAME = MutantStack
 CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
@@ -21,11 +21,9 @@ INC_DIR := inc
 BIN_DIR := bin
 
 # Sources & Objects
-SRC =	$(SRC_DIR)/main.cpp \
-		$(SRC_DIR)/Span.cpp
+SRC =	$(SRC_DIR)/main.cpp
 
-OBJ = 	$(BIN_DIR)/main.o \
-		$(BIN_DIR)/Span.o
+OBJ = 	$(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 
 # Commands
 RM = rm -rf
