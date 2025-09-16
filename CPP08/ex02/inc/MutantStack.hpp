@@ -13,17 +13,44 @@
 #pragma once
 
 #include <iostream>
+#include <cctype>
+#include <iomanip>
 #include <string>
 #include <cstdlib>
 #include <algorithm>
 #include <iterator>
 #include <exception>
+#include <unistd.h>
+#include <cmath>
+#include <limits>
+#include <cstring>
 
 // Containers
 #include <vector>
 #include <stack>
 #include <deque>
 #include <list>
+
+// Colors
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[37m"
+
+// Background colors
+#define BCK_BLACK   "\033[40m"
+#define BCK_RED     "\033[41m"
+#define BCK_GREEN   "\033[42m"
+#define BCK_YELLOW  "\033[43m"
+#define BCK_BLUE    "\033[44m"
+#define BCK_MAGENTA "\033[45m"
+#define BCK_CYAN    "\033[46m"
+#define BCK_WHITE   "\033[47m"
 
 template <typename T>
 class MutantStack : public std::stack<T>
