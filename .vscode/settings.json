@@ -53,6 +53,7 @@
 		"sstream": "cpp",
 		"fstream": "cpp",
 		"scalarconverter.hpp": "c",
-		"list": "cpp"
+		"list": "cpp",
+		"*.tpp": "cpp"
 	}
 }
