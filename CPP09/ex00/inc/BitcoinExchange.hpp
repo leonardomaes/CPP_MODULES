@@ -24,12 +24,15 @@
 #include <cmath>
 #include <limits>
 #include <cstring>
+#include <iostream>
+#include <fstream>
 
 // Containers
 #include <vector>
 #include <stack>
 #include <deque>
 #include <list>
+#include <map>
 
 // Colors
 #define RESET   "\033[0m"
@@ -51,3 +54,24 @@
 #define BCK_MAGENTA "\033[45m"
 #define BCK_CYAN    "\033[46m"
 #define BCK_WHITE   "\033[47m"
+
+class BitcoinExchange
+{
+private:
+	std::map<std::string, double> _map;
+	void ParseInput(char *av);
+	void ParseInputLine(std::string line);
+public:
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& obj);
+	BitcoinExchange operator=(const BitcoinExchange& obj);
+	~BitcoinExchange();
+
+	BitcoinExchange(char *av);
+
+	class InvalidInput : public std::exception { const char* what() const throw(); };
+	class InvalidExtension : public std::exception { const char* what() const throw(); };
+	class CouldNotOpenFile : public std::exception { const char* what() const throw(); };
+	class InvalidHeader : public std::exception { const char* what() const throw(); };
+	class InvalidDate : public std::exception { const char* what() const throw(); };
+};

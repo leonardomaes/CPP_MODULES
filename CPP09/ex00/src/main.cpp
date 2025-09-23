@@ -14,9 +14,18 @@
 
 int main(int ac, char *av[])
 {
-	if (ac == 1)
+	try
 	{
-		/* code */
+		(void)ac;
+		BitcoinExchange btc(av[1]);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << '\n';
 	}
 	return 0;
 }
+
+/* 
+
+*/
