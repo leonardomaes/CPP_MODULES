@@ -55,31 +55,38 @@ void BitcoinExchange::ParseInput(char *av)
 	std::getline(inFile, line);
 	if (line.compare("date | value"))
 		throw InvalidHeader();
+	std::string date;
 	while (std::getline(inFile, line))
 	{
-		ParseInputLine(line);
+		std::cout << "dbg::" << line << std::endl;
+		date = ParseDate(line);
 		//Print value
 	}
 	
 	inFile.close();
 }
 
-void BitcoinExchange::ParseInputLine(std::string line)
+std::string BitcoinExchange::ParseDate(std::string line)
 {
 	try
 	{
-		for (size_t i = 0; line[i] && line[i] != ' '; i++)
-		{
-			if (!std::isdigit(line[i]) && line[i] != '-')
-				throw InvalidDate();
-		}
+		int year = 0;
+		int month = 0;
+		int date = 0;
+		std::string dateBuffer(line, 0, 10);
+		year = std::atoi(dateBuffer.substr(0, 4).c_str());
+		month = std::atoi(dateBuffer.substr(5, 2).c_str());
+		date = std::atoi(dateBuffer.substr(8, 2).c_str());
+		if (date > 31 || date < 1 || month < 1 || month > 12)
+			throw InvalidDate();
+		// ...
+		return dateBuffer;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << "Error: " << e.what() << line << '\n';
 	}
-	
-
+	return NULL;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

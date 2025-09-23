@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <cctype>
+#include <ctime>
 #include <iomanip>
 #include <string>
 #include <cstdlib>
@@ -21,11 +22,13 @@
 #include <iterator>
 #include <exception>
 #include <unistd.h>
+#include <string>
 #include <cmath>
 #include <limits>
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 // Containers
 #include <vector>
@@ -60,7 +63,7 @@ class BitcoinExchange
 private:
 	std::map<std::string, double> _map;
 	void ParseInput(char *av);
-	void ParseInputLine(std::string line);
+	std::string ParseDate(std::string line);
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& obj);
