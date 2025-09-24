@@ -42,6 +42,25 @@ BitcoinExchange::~BitcoinExchange()
 //////////////////////////////////////// PRIVATE /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
+void BitcoinExchange::ParseCsv(void)
+{
+	std::ifstream db("data.csv");
+	if (!db || !db.is_open())
+		throw CouldNotOpenDB();
+	std::string line;
+	std::getline(db, line);
+	if (line.compare("date,exchange_rate"))
+		throw InvalidHeader();
+	std::string date;
+	float num;
+	while (std::getline(db, line))
+	{
+		date = ParseDate(line, ',');
+		num = ParseNum(line, 1);
+		this->_map.insert(std::make_pair(date, num));
+	}
+}
+
 void BitcoinExchange::ParseInput(char *av)
 {
 	if (!av)
@@ -56,37 +75,87 @@ void BitcoinExchange::ParseInput(char *av)
 	if (line.compare("date | value"))
 		throw InvalidHeader();
 	std::string date;
+	float num;
 	while (std::getline(inFile, line))
 	{
-		std::cout << "dbg::" << line << std::endl;
-		date = ParseDate(line);
-		//Print value
+		try
+		{
+			// std::cout << "dbg::" << line << std::endl;
+			date = ParseDate(line, '|');
+			num = ParseNum(line, 2);
+			(void)num;
+			
+			// std::cout << "dbg::" << date << "--" << num << std::endl << std::endl;
+			//Print value
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Error: " << e.what() << " => " << line << '\n';
+		}
 	}
 	
 	inFile.close();
 }
 
-std::string BitcoinExchange::ParseDate(std::string line)
+std::string BitcoinExchange::ParseDate(std::string line, char toFind)
 {
-	try
-	{
-		int year = 0;
-		int month = 0;
-		int date = 0;
-		std::string dateBuffer(line, 0, 10);
-		year = std::atoi(dateBuffer.substr(0, 4).c_str());
-		month = std::atoi(dateBuffer.substr(5, 2).c_str());
-		date = std::atoi(dateBuffer.substr(8, 2).c_str());
-		if (date > 31 || date < 1 || month < 1 || month > 12)
+	size_t inputPipe = line.find(toFind);
+		if (inputPipe == std::string::npos)
 			throw InvalidDate();
-		// ...
-		return dateBuffer;
-	}
-	catch(const std::exception& e)
+	std::string dateBuffer(line, 0, inputPipe);
+	tm tm;
+	if (!strptime(dateBuffer.c_str(), "%Y-%m-%d", &tm))
+		throw InvalidDate();
+	return dateBuffer;
+}
+
+float BitcoinExchange::ParseNum(std::string line, int flag)
+{
+	if (flag == 1)
 	{
-		std::cerr << "Error: " << e.what() << line << '\n';
+		std::string numBuffer = line.substr(line.find(',') + 1);
+		bool dotFund = false;
+		for (size_t i = 0; numBuffer[i]; i++)
+		{
+			if (!std::isdigit(numBuffer[i]))
+			{
+				if (numBuffer[i] == '.' && !dotFund)
+					dotFund = true;
+				else
+					throw InvalidDB();
+			}
+		}
+		char *end;
+		float num = std::strtof(numBuffer.c_str(), &end);
+		if (*end != '\0' || num < 0)
+			throw InvalidDB();
+		return num;
 	}
-	return NULL;
+	else if (flag == 2)
+	{
+		std::string numBuffer = line.substr(line.find('|') + 2);
+		bool dotFund = false;
+		for (size_t i = 0; numBuffer[i]; i++)
+		{
+			if (!std::isdigit(numBuffer[i]))
+			{
+				if (numBuffer[i] == '.' && !dotFund)
+					dotFund = true;
+				else
+					throw InvalidValue();
+			}
+		}
+		char *end;
+		float num = std::strtof(numBuffer.c_str(), &end);
+		if (*end != '\0')
+			throw InvalidDB();
+		else if (num < 0 || num > 1000)
+			throw InvalidValue();
+		
+		return num;
+	}
+	
+	throw InvalidDB();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -94,30 +163,18 @@ std::string BitcoinExchange::ParseDate(std::string line)
 //////////////////////////////////////////////////////////////////////////////////////////
 BitcoinExchange::BitcoinExchange(char *av)
 {
-	//ParseCsv();
+	ParseCsv();
 	ParseInput(av);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////// EXCEPTIONS ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const char* BitcoinExchange::InvalidInput::what() const throw()
-{
-	return "No input file specified!!";
-}
-const char* BitcoinExchange::InvalidExtension::what() const throw()
-{
-	return "File with Invalid Extension!!";
-}
-const char* BitcoinExchange::CouldNotOpenFile::what() const throw()
-{
-	return "Could Not Open File!!";
-}
-const char* BitcoinExchange::InvalidHeader::what() const throw()
-{
-	return "Invalid Header!!";
-}
-const char* BitcoinExchange::InvalidDate::what() const throw()
-{
-	return "Invalid Date => ";
-}
+const char* BitcoinExchange::InvalidInput::what() const throw() { return "No input file specified!!"; }
+const char* BitcoinExchange::InvalidExtension::what() const throw() { return "File with Invalid Extension!!"; }
+const char* BitcoinExchange::CouldNotOpenFile::what() const throw() { return "Could Not Open File!!"; }
+const char* BitcoinExchange::CouldNotOpenDB::what() const throw() { return "Could Not Open Database!!"; }
+const char* BitcoinExchange::InvalidHeader::what() const throw() { return "Invalid Header!!"; }
+const char* BitcoinExchange::InvalidDate::what() const throw() { return "Invalid Input Date"; }
+const char* BitcoinExchange::InvalidValue::what() const throw() { return "Invalid Input Value"; }
+const char* BitcoinExchange::InvalidDB::what() const throw() { return "Invalid Database"; }

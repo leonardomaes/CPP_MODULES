@@ -62,8 +62,11 @@ class BitcoinExchange
 {
 private:
 	std::map<std::string, double> _map;
+
 	void ParseInput(char *av);
-	std::string ParseDate(std::string line);
+	void ParseCsv(void);
+	std::string ParseDate(std::string line, char toFind);
+	float ParseNum(std::string line, int flag);
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& obj);
@@ -75,6 +78,9 @@ public:
 	class InvalidInput : public std::exception { const char* what() const throw(); };
 	class InvalidExtension : public std::exception { const char* what() const throw(); };
 	class CouldNotOpenFile : public std::exception { const char* what() const throw(); };
+	class CouldNotOpenDB : public std::exception { const char* what() const throw(); };
 	class InvalidHeader : public std::exception { const char* what() const throw(); };
 	class InvalidDate : public std::exception { const char* what() const throw(); };
+	class InvalidValue : public std::exception { const char* what() const throw(); };
+	class InvalidDB : public std::exception { const char* what() const throw(); };
 };
