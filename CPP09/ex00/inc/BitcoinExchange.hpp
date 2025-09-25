@@ -12,28 +12,27 @@
 
 #pragma once
 
-#include <iostream>
-#include <cctype>
-#include <ctime>
-#include <iomanip>
-#include <string>
-#include <cstdlib>
 #include <algorithm>
-#include <iterator>
-#include <exception>
-#include <unistd.h>
-#include <string>
+#include <cctype>
 #include <cmath>
-#include <limits>
+#include <ctime>
+#include <cstdlib>
 #include <cstring>
-#include <iostream>
+#include <exception>
 #include <fstream>
+#include <limits>
+#include <iostream>
+#include <iomanip>
+#include <iostream>
+#include <iterator>
 #include <sstream>
+#include <string>
+#include <unistd.h>
 
 // Containers
+#include <deque>
 #include <vector>
 #include <stack>
-#include <deque>
 #include <list>
 #include <map>
 
@@ -68,6 +67,7 @@ private:
 	std::string ParseDate(std::string line, char toFind);
 	float ParseNum(std::string line, int flag);
 	void PrintValue(std::string date, float num);
+	bool CheckDate(tm tm);
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& obj);
@@ -85,3 +85,5 @@ public:
 	class InvalidValue : public std::exception { const char* what() const throw(); };
 	class InvalidDB : public std::exception { const char* what() const throw(); };
 };
+
+std::string Trim(const std::string& str);

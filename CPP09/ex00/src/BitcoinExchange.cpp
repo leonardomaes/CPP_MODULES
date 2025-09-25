@@ -93,7 +93,7 @@ void BitcoinExchange::ParseInput(char *av)
 
 void BitcoinExchange::PrintValue(std::string date, float num)
 {
-	if (this->_map[date.erase(date.size() - 1)])
+	if (this->_map[date])
 		std::cout  << date << " => " << num << " = " << this->_map[date] * num << std::endl;
 	else
 	{
@@ -106,15 +106,45 @@ void BitcoinExchange::PrintValue(std::string date, float num)
 
 std::string BitcoinExchange::ParseDate(std::string line, char toFind)
 {
-	size_t inputPipe = line.find(toFind);
-		if (inputPipe == std::string::npos)
-			throw InvalidDate();
-	std::string dateBuffer(line, 0, inputPipe);
-	tm tm;
-	if (!strptime(dateBuffer.c_str(), "%Y-%m-%d", &tm))
-		throw InvalidDate();
-	return dateBuffer;
+    size_t inputPipe = line.find(toFind);
+    if (inputPipe == std::string::npos)
+        throw InvalidDate();
+
+    std::string dateBuffer(line, 0, inputPipe);
+    dateBuffer = Trim(dateBuffer);
+
+    tm tm = {};
+    char *end = strptime(dateBuffer.c_str(), "%Y-%m-%d", &tm);
+
+    if (!end || *end != '\0' || !CheckDate(tm))
+        throw InvalidDate();
+
+    return dateBuffer;
 }
+
+
+bool BitcoinExchange::CheckDate(const tm date)
+{
+	int year  = date.tm_year + 1900;
+	int month = date.tm_mon;
+	int day   = date.tm_mday;
+
+	if (year < 1900)
+		return false;
+
+	if (month < 0 || month > 11)
+		return false;
+	int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	bool leap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+	if (leap)
+		daysInMonth[1] = 29;
+
+	if (day < 1 || day > daysInMonth[month])
+		return false;
+	return true;
+}
+
+
 float BitcoinExchange::ParseNum(std::string line, int flag)
 {
 	if (flag == 1)
@@ -172,6 +202,7 @@ BitcoinExchange::BitcoinExchange(char *av)
 	ParseCsv();
 	ParseInput(av);
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////// EXCEPTIONS ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -184,3 +215,18 @@ const char* BitcoinExchange::InvalidHeader::what() const throw() { return "Inval
 const char* BitcoinExchange::InvalidDate::what() const throw() { return "Invalid Input Date"; }
 const char* BitcoinExchange::InvalidValue::what() const throw() { return "Invalid Input Value"; }
 const char* BitcoinExchange::InvalidDB::what() const throw() { return "Invalid Database"; }
+
+
+std::string Trim(const std::string& str)
+{
+    size_t start = 0;
+    while (start < str.size() && std::isspace(static_cast<unsigned char>(str[start])))
+        ++start;
+
+    size_t end = str.size();
+    while (end > start && std::isspace(static_cast<unsigned char>(str[end - 1])))
+        --end;
+
+    return str.substr(start, end - start);
+}
+
