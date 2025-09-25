@@ -65,8 +65,6 @@ void BitcoinExchange::ParseInput(char *av)
 {
 	if (!av)
 		throw InvalidInput();
-	if (strncmp(av + (strlen(av) - 4), ".txt", 4))
-		throw InvalidExtension();
 	std::ifstream inFile(av);
 	if (!inFile || !inFile.is_open())
 		throw CouldNotOpenFile();
@@ -80,13 +78,9 @@ void BitcoinExchange::ParseInput(char *av)
 	{
 		try
 		{
-			// std::cout << "dbg::" << line << std::endl;
 			date = ParseDate(line, '|');
 			num = ParseNum(line, 2);
-			(void)num;
-			
-			// std::cout << "dbg::" << date << "--" << num << std::endl << std::endl;
-			//Print value
+			PrintValue(date, num);
 		}
 		catch(const std::exception& e)
 		{
@@ -95,6 +89,19 @@ void BitcoinExchange::ParseInput(char *av)
 	}
 	
 	inFile.close();
+}
+
+void BitcoinExchange::PrintValue(std::string date, float num)
+{
+	if (this->_map[date.erase(date.size() - 1)])
+		std::cout  << date << " => " << num << " = " << this->_map[date] * num << std::endl;
+	else
+	{
+		std::map<std::string, float>::const_iterator i = _map.upper_bound(date);
+		--i;
+		--i;
+		std::cout << date << " => " << num << " = " << num * i->second << std::endl;
+	}
 }
 
 std::string BitcoinExchange::ParseDate(std::string line, char toFind)
@@ -108,7 +115,6 @@ std::string BitcoinExchange::ParseDate(std::string line, char toFind)
 		throw InvalidDate();
 	return dateBuffer;
 }
-
 float BitcoinExchange::ParseNum(std::string line, int flag)
 {
 	if (flag == 1)

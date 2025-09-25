@@ -61,12 +61,13 @@
 class BitcoinExchange
 {
 private:
-	std::map<std::string, double> _map;
+	std::map<std::string, float> _map;
 
 	void ParseInput(char *av);
 	void ParseCsv(void);
 	std::string ParseDate(std::string line, char toFind);
 	float ParseNum(std::string line, int flag);
+	void PrintValue(std::string date, float num);
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& obj);
