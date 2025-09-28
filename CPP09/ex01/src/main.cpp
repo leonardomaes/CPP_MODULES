@@ -10,4 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/RPN.hpp"
 
+int main(int ac, char **av)
+{
+	try
+	{
+		if (ac == 2)
+			RPN rpn(av[1]);
+		else
+			throw RPN::InvalidArgument();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+}
