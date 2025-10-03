@@ -56,3 +56,29 @@
 #define BCK_MAGENTA "\033[45m"
 #define BCK_CYAN    "\033[46m"
 #define BCK_WHITE   "\033[47m"
+
+class PmergeMe
+{
+private:
+	std::vector<int> _vector;
+	std::deque<int> _deque;
+	template <typename Container> void MergeSort(Container& v);
+	template <typename Container> void Merge(Container& left, Container& right, Container& v);
+public:
+	PmergeMe();
+	PmergeMe(const PmergeMe& obj);
+	PmergeMe operator=(const PmergeMe& obj);
+	~PmergeMe();
+	PmergeMe(std::list<int> l);
+	void Sort();
+
+	class MergeException : public std::exception {
+		private:
+			std::string _errorMsg;
+		public:
+			MergeException(const std::string& error);
+			~MergeException() throw();
+			virtual const char* what() const throw();
+	};
+};
+
