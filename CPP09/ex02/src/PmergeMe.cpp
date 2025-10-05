@@ -39,25 +39,59 @@ PmergeMe::PmergeMe(std::list<int> l)
 	while (!l.empty())
 	{
 		this->_vector.push_back(l.front());
+		this->_deque.push_back(l.front());
 		l.pop_front();
-		// Verificar se ja esta sorted
 	}
+}
+
+template <typename Container>
+bool PmergeMe::isSorted(Container& cont)
+{
+	typename Container::const_iterator it = cont.begin();
+
+	int prev = *it;
+
+	while (it != cont.end()) {
+		it++;
+	if (it == cont.end())
+		break;
+	if (*it < prev)
+		return false;
+	}
+	return true;
+}
+
+double get_time_us()
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_sec * 1000000L + tv.tv_usec;
 }
 
 void PmergeMe::Sort()
 {
-	// std::cout << "Begin:" << std::endl;
-	// for (size_t i = 0; i < _vector.size(); i++)
-	// {
-	// 	std::cout << _vector[i] << std::endl;
-	// }
+
+	double start, end;
+	start = get_time_us();
+	std::cout << "Before:  ";
+	for (size_t i = 0; i < this->_vector.size(); ++i)
+		std::cout << this->_vector[i] << " ";
 	this->MergeSort(this->_vector);
-	// std::cout << "End:" << std::endl;
-	// for (size_t i = 0; i < _vector.size(); i++)
-	// {
-	// 	std::cout << _vector[i] << std::endl;
-	// }
-	
+	std::cout << std::endl << "After:   ";
+	for (size_t i = 0; i < this->_vector.size(); ++i)
+		std::cout << this->_vector[i] << " ";
+	end = get_time_us();
+	std::cout << std::endl << "Time to process a range of " << this->_vector.size()
+			<< " elements with std::[vector] : " << (end - start) << " us " 
+			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
+
+
+	start = get_time_us();
+	this->MergeSort(this->_deque);
+	end = get_time_us();
+	std::cout << std::setprecision(0) << "Time to process a range of " << this->_vector.size()
+			<< " elements with std::[deque]  : " << (end - start) << " us " 
+			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
 }
 
 template <typename Container>
@@ -75,6 +109,7 @@ void PmergeMe::MergeSort(Container& v)
 	Merge(left, right, v);
 }
 
+/* 
 template <typename Container>
 void PmergeMe::Merge(Container& left, Container& right, Container& v)
 {
@@ -94,8 +129,30 @@ void PmergeMe::Merge(Container& left, Container& right, Container& v)
 	while (r < rightSize)
 		v[i++] = right[r++];
 }
+ */
 
-PmergeMe::MergeException::MergeException(const std::string& error) {
+template <typename Container>
+void PmergeMe::Merge(Container& left, Container& right, Container& v)
+{
+	typedef typename Container::iterator iterator;
+	iterator l = left.begin();
+	iterator r = right.begin();
+	iterator it = v.begin();
+	
+	while (l != left.end() && r != right.end())
+	{
+		if (*l < *r)
+			*it++ = *l++;
+		else
+			*it++ = *r++;
+	}
+	while (l != left.end())
+		*it++ = *l++;
+	while (r != right.end())
+		*it++ = *r++;
+}
+
+ PmergeMe::MergeException::MergeException(const std::string& error) {
 	_errorMsg = "Error: " + error;
 }
 

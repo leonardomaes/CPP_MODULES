@@ -26,6 +26,8 @@
 #include <iostream>
 #include <iterator>
 #include <sstream>
+#include <sys/time.h>
+#include <bits/stdc++.h>
 #include <string>
 #include <unistd.h>
 
@@ -64,6 +66,7 @@ private:
 	std::deque<int> _deque;
 	template <typename Container> void MergeSort(Container& v);
 	template <typename Container> void Merge(Container& left, Container& right, Container& v);
+	template <typename Container> bool isSorted(Container& cont);
 public:
 	PmergeMe();
 	PmergeMe(const PmergeMe& obj);
