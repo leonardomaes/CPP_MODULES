@@ -84,7 +84,7 @@ void BitcoinExchange::ParseInput(char *av)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Error: " << e.what() << " => " << line << '\n';
+			std::cerr << "Error: " << e.what() << " => '" << line << "'\n";
 		}
 	}
 	
@@ -93,13 +93,14 @@ void BitcoinExchange::ParseInput(char *av)
 
 void BitcoinExchange::PrintValue(std::string date, float num)
 {
-	if (this->_map[date])
-		std::cout  << date << " => " << num << " = " << this->_map[date] * num << std::endl;
+	std::map<std::string, float>::const_iterator it = _map.find(date);
+	if (it != _map.end())
+		std::cout << date << " => " << num << " = " << it->second * num << std::endl;
 	else
 	{
 		std::map<std::string, float>::const_iterator i = _map.upper_bound(date);
-		--i;
-		--i;
+		if (i != _map.begin())
+			--i;
 		std::cout << date << " => " << num << " = " << num * i->second << std::endl;
 	}
 }
@@ -107,7 +108,7 @@ void BitcoinExchange::PrintValue(std::string date, float num)
 std::string BitcoinExchange::ParseDate(std::string line, char toFind)
 {
     size_t inputPipe = line.find(toFind);
-    if (inputPipe == std::string::npos)
+    if (inputPipe == std::string::npos || line == "\n")
         throw InvalidDate();
 
     std::string dateBuffer(line, 0, inputPipe);
