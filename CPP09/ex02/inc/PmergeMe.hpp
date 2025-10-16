@@ -64,8 +64,10 @@ class PmergeMe
 private:
 	std::vector<int> _vector;
 	std::deque<int> _deque;
-	template <typename Container> void MergeSort(Container& v);
-	template <typename Container> void Merge(Container& left, Container& right, Container& v);
+	template <typename Container> void BinaryInsert(Container &main, typename Container::value_type value);
+	std::vector<size_t> GenerateJacobsthalOrder(size_t n);
+	// template <typename Container> void Merge(Container& left, Container& right, Container& v);
+	template <typename Container> void MergeInsertionSort(Container& v);
 	template <typename Container> bool isSorted(Container& cont);
 public:
 	PmergeMe();
