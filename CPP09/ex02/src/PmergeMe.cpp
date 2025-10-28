@@ -174,15 +174,15 @@ void PmergeMe::Sort()
 {
 
 	double start, end;
-	start = get_time_us();
 	std::cout << "Before:  ";
 	for (size_t i = 0; i < this->_vector.size(); ++i)
 		std::cout << this->_vector[i] << " ";
+	start = get_time_us();
 	this->MergeInsertionSort(this->_vector);
+	end = get_time_us();
 	std::cout << std::endl << "After:   ";
 	for (size_t i = 0; i < this->_vector.size(); ++i)
 		std::cout << this->_vector[i] << " ";
-	end = get_time_us();
 	std::cout << std::endl << "Time to process a range of " << this->_vector.size()
 			<< " elements with std::[vector] : " << (end - start) << " us " 
 			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
