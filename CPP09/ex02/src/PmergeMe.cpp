@@ -48,9 +48,8 @@ double get_time_us()
 {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec * 1000000L + tv.tv_usec;
+	return tv.tv_sec * 1000000 + tv.tv_usec;
 }
-
 
 template <typename Container>
 void PmergeMe::BinaryInsert(Container &main, typename Container::value_type value)
@@ -61,54 +60,78 @@ void PmergeMe::BinaryInsert(Container &main, typename Container::value_type valu
 
 std::vector<size_t> PmergeMe::GenerateJacobsthalOrder(size_t n)
 {
-	std::vector<size_t> jacob;
-	std::vector<size_t> order;
-
-	jacob.push_back(0);
-	jacob.push_back(1);
-	while (jacob.back() < n)
-		jacob.push_back(jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2]);
-	size_t prev = 1;
-	for (size_t i = 2; jacob[i] <= n; ++i)
+	std::vector<size_t> seq;
+	seq.push_back(0);
+	if (n == 0)
+		return seq;
+	seq.push_back(1);
+	while (true)
 	{
-		for (size_t j = jacob[i]; j > prev; --j)
-			order.push_back(j - 1);
-		prev = jacob[i];
+		size_t next = seq[seq.size() - 1] + 2 * seq[seq.size() - 2];
+		if (next >= n)
+			break;
+		seq.push_back(next);
 	}
-	while (prev < n)
-		order.push_back(prev++);
-	return order;
+	return seq;
 }
+
+template <typename Container>
+void PmergeMe::pairSort(Container& pending, Container& mainChain)
+{
+	size_t pairCount = pending.size();
+	for (size_t i = 0; i < pairCount; ++i)
+	{
+		for (size_t j = i + 1; j < pairCount; ++j)
+		{
+			if (mainChain[j] < mainChain[i])
+			{
+				std::swap(mainChain[i], mainChain[j]);
+				std::swap(pending[i], pending[j]);
+			}
+		}
+	}
+}
+
 
 template <typename Container>
 void PmergeMe::MergeInsertionSort(Container& v)
 {
-	int size = v.size();
-	if (size <= 1)
-		return ;
-	for (int i = 0; i+1 < size; i+=2)
+	size_t n = v.size();
+	if (n <= 1)
+		return;
+	std::vector<int> main;
+	std::vector<int> pending;
+
+	for (size_t i = 0; i + 1 < n; i += 2)
 	{
 		if (v[i] > v[i+1])
 			std::swap(v[i], v[i+1]);
+		main.push_back(v[i+1]);
+		pending.push_back(v[i]);
 	}
-	std::vector<typename Container::value_type> a; // receive larger numbers
-	std::vector<typename Container::value_type> b; // receive smaller numbers
+	if (n % 2 != 0)
+		main.push_back(v[n - 1]);
 
-	for (int i = 0; i + 1 < size; i += 2)
+	pairSort(pending, main);
+	std::vector<size_t> jacob = GenerateJacobsthalOrder(pending.size());
+	std::vector<bool> inserted(pending.size(), false);
+
+	for (size_t i = 0; i < jacob.size(); ++i)
 	{
-		b.push_back(v[i]);
-		a.push_back(v[i + 1]);
+		size_t idx = jacob[i];
+		if (idx < pending.size() && !inserted[idx])
+		{
+			BinaryInsert(main, pending[idx]);
+			inserted[idx] = true;
+		}
 	}
-	if (size % 2 != 0)
-		a.push_back(v[size - 1]);
-	MergeInsertionSort(a);
-	std::vector<size_t> order = GenerateJacobsthalOrder(b.size());
-	for (size_t i = 0; i < order.size(); ++i)
+	for (size_t i = 0; i < pending.size(); ++i)
 	{
-		if (order[i] < b.size())
-			BinaryInsert(a, b[order[i]]);
+		if (!inserted[i])
+			BinaryInsert(main, pending[i]);
 	}
-	v.assign(a.begin(), a.end());
+
+	v.assign(main.begin(), main.end());
 }
 
 
@@ -195,8 +218,6 @@ void PmergeMe::Sort()
 			<< " elements with std::[deque]  : " << (end - start) << " us " 
 			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
 }
-
-
 
  PmergeMe::MergeException::MergeException(const std::string& error) {
 	_errorMsg = "Error: " + error;
