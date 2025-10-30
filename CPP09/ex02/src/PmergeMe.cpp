@@ -109,10 +109,14 @@ void PmergeMe::MergeInsertionSort(Container& v)
 		main.push_back(v[i+1]);
 		pending.push_back(v[i]);
 	}
-	if (n % 2 != 0)
-		main.push_back(v[n - 1]);
-
 	pairSort(pending, main);
+	typename Container::value_type odd;
+	if (n % 2 != 0)
+	{
+		odd = v[n - 1];
+		// main.push_back(v[n - 1]);
+	}
+
 	std::vector<size_t> jacob = GenerateJacobsthalOrder(pending.size());
 	std::vector<bool> inserted(pending.size(), false);
 
@@ -130,7 +134,8 @@ void PmergeMe::MergeInsertionSort(Container& v)
 		if (!inserted[i])
 			BinaryInsert(main, pending[i]);
 	}
-
+	if (n % 2 != 0)
+		BinaryInsert(main, odd);
 	v.assign(main.begin(), main.end());
 }
 
