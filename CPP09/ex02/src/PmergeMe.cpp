@@ -48,7 +48,7 @@ double get_time_us()
 {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec * 1000000 + tv.tv_usec;
+	return tv.tv_sec * 1000000L + tv.tv_usec;
 }
 
 template <typename Container>
@@ -99,8 +99,8 @@ void PmergeMe::MergeInsertionSort(Container& v)
 	size_t n = v.size();
 	if (n <= 1)
 		return;
-	std::vector<int> main;
-	std::vector<int> pending;
+	Container main;
+	Container pending;
 
 	for (size_t i = 0; i + 1 < n; i += 2)
 	{
@@ -205,13 +205,15 @@ void PmergeMe::Sort()
 	std::cout << "Before:  ";
 	for (size_t i = 0; i < this->_vector.size(); ++i)
 		std::cout << this->_vector[i] << " ";
+
 	start = get_time_us();
 	this->MergeInsertionSort(this->_vector);
 	end = get_time_us();
+
 	std::cout << std::endl << "After:   ";
 	for (size_t i = 0; i < this->_vector.size(); ++i)
 		std::cout << this->_vector[i] << " ";
-	std::cout << std::endl << "Time to process a range of " << this->_vector.size()
+	std::cout << std::endl << std::setprecision(7) <<  "Time to process a range of " << this->_vector.size()
 			<< " elements with std::[vector] : " << (end - start) << " us " 
 			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
 
@@ -219,6 +221,7 @@ void PmergeMe::Sort()
 	start = get_time_us();
 	this->MergeInsertionSort(this->_deque);
 	end = get_time_us();
+
 	std::cout << std::setprecision(0) << "Time to process a range of " << this->_vector.size()
 			<< " elements with std::[deque]  : " << (end - start) << " us " 
 			<< std::fixed << std::setprecision(6) << "(" << (end - start) / 1000000.0 << "s)" << std::endl;
