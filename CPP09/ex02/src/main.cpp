@@ -22,7 +22,7 @@ int main(int ac, char **av)
 		for (size_t i = 1; av[i]; i++)
 		{
 			std::string a = av[i];
-			if (a.find_first_not_of("0123456789") != std::string::npos)
+			if ((a.empty()) || (a.find_first_not_of("0123456789") != std::string::npos))
 				throw PmergeMe::MergeException("Invalid number founded!!");
 			list.push_back(std::atoi(av[i]));
 		}
