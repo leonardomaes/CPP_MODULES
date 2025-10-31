@@ -39,6 +39,8 @@ RPN::RPN(char *str)
 {
 	for (size_t i = 0; str[i]; i++)
 	{
+		if (std::isdigit(str[i]) && std::isdigit(str[i+1]))
+			throw InvalidArgument();
 		if (std::isdigit(str[i]))
 			_stack.push(str[i] - '0');
 		else if (std::isspace(str[i]))
